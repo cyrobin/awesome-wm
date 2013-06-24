@@ -71,6 +71,26 @@ config.layouts = {
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
+--{{{ Load remaining modules
+--loadrc("xrun")			-- xrun function
+--loadrc("appearance")	-- theme and appearance settings
+loadrc("debug")			-- debugging primitive `dbg()`
+
+--loadrc("start")			-- programs to run on start
+--loadrc("bindings")		-- keybindings
+--loadrc("wallpaper")		-- wallpaper settings
+--loadrc("widgets")		-- widgets configuration
+--loadrc("tags")			-- tags handling
+--loadrc("xlock")			-- lock screen
+--loadrc("signals")		-- window manager behaviour
+--loadrc("rules")			-- window rules
+--loadrc("quake")			-- quake console
+--loadrc("xrandr")		-- xrandr menu
+--}}}
+
+
+
+----------- From Default rc.lua
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
@@ -198,7 +218,7 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 -- {{{ Key bindings
-globalkeys = awful.util.table.join(
+config.globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
@@ -288,7 +308,8 @@ end
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, keynumber do
-    globalkeys = awful.util.table.join(globalkeys,
+    config.globalkeys = awful.util.table.join(
+        config.globalkeys,
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
                         local screen = mouse.screen
@@ -323,7 +344,8 @@ clientbuttons = awful.util.table.join(
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
 -- Set keys
-root.keys(globalkeys)
+root.keys(config.globalkeys)
+--root.keys(config.keys.global)
 -- }}}
 
 -- {{{ Rules
