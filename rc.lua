@@ -85,7 +85,7 @@ loadrc("bindings")		-- keybindings
 --loadrc("wallpaper")		-- wallpaper settings
 --loadrc("widgets")		-- widgets configuration
 loadrc("tags")			-- tags handling
---loadrc("xlock")			-- lock screen
+loadrc("xlock")			-- lock screen
 loadrc("signals")		-- window manager behaviour
 loadrc("rules")			-- window rules
 --loadrc("quake")			-- quake console
