@@ -51,7 +51,9 @@ config = {}
 config.laptop = true --enable option like battery
 config.hostname = awful.util.pread('uname -n'):gsub('\n', '')
 
-config.terminal = "gnome-terminal"
+--config.terminal = "gnome-terminal"
+config.terminal = "urxvtcd --perl-lib " .. awful.util.getdir("config") .. "/lib/rxvt"
+config.termclass = "URxvt"
 config.editor = os.getenv("EDITOR") or "vim"
 config.editor_cmd = config.terminal .. " -e " .. config.editor
 
