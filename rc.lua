@@ -80,7 +80,7 @@ loadrc("start")			-- programs to run on start
 loadrc("bindings")		-- keybindings
 --loadrc("wallpaper")		-- wallpaper settings
 --loadrc("widgets")		-- widgets configuration
---loadrc("tags")			-- tags handling
+loadrc("tags")			-- tags handling
 --loadrc("xlock")			-- lock screen
 loadrc("signals")		-- window manager behaviour
 loadrc("rules")			-- window rules
@@ -90,16 +90,7 @@ loadrc("rules")			-- window rules
 
 root.keys(config.keys.global)
 
-
 ----------- From Default rc.lua
--- {{{ Tags
--- Define a tag table which hold all screen tags.
-tags = {}
-for s = 1, screen.count() do
-    -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, config.layouts[1])
-end
--- }}}
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
@@ -210,25 +201,3 @@ for s = 1, screen.count() do
 end
 -- }}}
 
---
----- {{{ Rules
---awful.rules.rules = {
---    -- All clients will match this rule.
---    { rule = { },
---      properties = { border_width = beautiful.border_width,
---                     border_color = beautiful.border_normal,
---                     focus = true,
---                     keys = clientkeys,
---                     buttons = clientbuttons } },
---    { rule = { class = "MPlayer" },
---      properties = { floating = true } },
---    { rule = { class = "pinentry" },
---      properties = { floating = true } },
---    { rule = { class = "gimp" },
---      properties = { floating = true } },
---    -- Set Firefox to always map on tags number 2 of screen 1.
---    -- { rule = { class = "Firefox" },
---    --   properties = { tag = tags[1][2] } },
---}
----- }}}
---
