@@ -1,0 +1,59 @@
+!! Xft
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintlight
+Xft.rgba: rgb
+
+!! Colors, stolen from http://xcolors.net/dl/????
+*color0:   #000000
+*color8:   #000000
+*color1:   #000000
+*color9:   #000000
+*color2:   #000000
+*color10:  #000000
+*color3:   #000000
+*color11:  #000000
+*color4:   #000000
+*color12:  #000000
+*color5:   #000000
+*color13:  #000000
+*color6:   #000000
+*color14:  #000000
+*color7:   #000000
+*color15:  #000000
+
+!! rxvt configuration
+URxvt.foreground: black
+URxvt.background: rgba:FFFF/FFFF/FFFF/eeee
+URxvt.cursorColor: green
+URxvt.depth: 32
+URxvt.cursorBlink: True
+!!URxvt*colorIT: #ff7f00
+URxvt*colorIT: #00FFFF
+
+URxvt.scrollBar: True
+URxvt.scrollTtyOutput: False
+URxvt.scrollTtyKeypress: True
+URxvt.scrollWithBuffer: True
+URxvt.jumpScroll: True
+URxvt.skipScroll: True
+URxvt.saveLines: 5000
+
+!! To get this font, use the font patcher from https://github.com/Lokaltog/vim-powerline
+!! To get a smaller version of this font, use:
+!!
+!! # Remove most glyphs
+!! for glyph in target_font.glyphs():
+!!   if glyph.unicode not in range(32,64):
+!!     target_font.removeGlyph(glyph)
+URxvt.font: xft:DejaVu Sans Mono-8,xft:DejaVu Sans Mono for Powerline-8
+URxvt.letterSpace: -1
+
+URxvt.iso14755: False
+
+!URxvt.perl-lib: ...
+URxvt.perl-ext-common: default,-option-popup,-selection-popup,font-size,matcher,clipboard
+URxvt.keysym.C-equal: perl:font-size:increase
+URxvt.keysym.C-minus: perl:font-size:decrease
+URxvt.keysym.C-S-c: perl:clipboard:copy
+URxvt.keysym.C-S-v: perl:clipboard:paste
