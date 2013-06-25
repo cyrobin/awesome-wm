@@ -181,7 +181,7 @@ vicious.register(memwidget, vicious.widgets.mem,
 local memicon = widget({ type = "imagebox" })
 memicon.image = image(beautiful.icons .. "/widgets/mem.png")
 --}}}
-
+--
 ----{{{ Volume level
 --local volicon = widget({ type = "imagebox" })
 --volicon.image = image(beautiful.icons .. "/widgets/vol.png")
@@ -358,6 +358,11 @@ local promptbox = {}
 local layoutbox = {}
 
 local taglist = {}
+taglist.buttons = awful.util.table.join(
+                  awful.button({ }, 1, awful.tag.viewonly),
+                  awful.button({ }, 3, awful.tag.viewtoggle),
+                  awful.button({ modkey }, 3, awful.client.toggletag)
+                  )
 local tasklist = {}
 tasklist.buttons = awful.util.table.join(
    awful.button({ }, 1, function (c)
@@ -372,7 +377,15 @@ tasklist.buttons = awful.util.table.join(
 		      client.focus = c
 		      c:raise()
 		   end
-			end))
+		end),
+   awful.button({ }, 3, function ()
+            if instance then
+                instance:hide()
+                instance = nil
+            else
+                instance = awful.menu.clients({ width=250 })
+            end
+        end))
 
 for s = 1, screen.count() do
     promptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
@@ -385,7 +398,7 @@ for s = 1, screen.count() do
 
     -- Create the taglist
     taglist[s] = awful.widget.taglist.new(s,
-                                          awful.widget.taglist.label.all)
+            awful.widget.taglist.label.all, taglist.buttons)
     -- Create the wibox
     wibox[s] = awful.wibox({ screen = s,
 			     fg = beautiful.fg_normal,
