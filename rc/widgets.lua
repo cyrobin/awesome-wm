@@ -231,39 +231,39 @@ vicious.register(fswidget, vicious.widgets.fs,
 		 end, 53)
 --}}}
 
-----{{{ Applications menu
----- largely based on awesome freedesktop (git submodule)
---require('freedesktop/freedesktop.utils')
---freedesktop.utils.terminal = config.terminal
---freedesktop.utils.icon_theme = {'mate','Mint-X-Dark','gnome'} -- look inside /usr/share/icons/, default: nil (don't use icon theme)
---require('freedesktop/freedesktop.menu')
---local debianMenu = loadrc("debian-menu") -- Load the debian menu
---
---menu_items = freedesktop.menu.new()
---myawesomemenu = {
---   { "manual", config.terminal .. " -e man awesome", freedesktop.utils.lookup_icon({ icon = 'help' }) },
---   { "edit config", config.editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua", freedesktop.utils.lookup_icon({ icon = 'package_settings' }) },
---   { "restart", awesome.restart, freedesktop.utils.lookup_icon({ icon = 'gtk-refresh' }) },
---   { "quit", awesome.quit, freedesktop.utils.lookup_icon({ icon = 'gtk-quit' }) }
---}
---table.insert(menu_items, { "awesome", myawesomemenu, beautiful.awesome_icon })
---table.insert(menu_items, { "open terminal", config.terminal, freedesktop.utils.lookup_icon({icon = 'terminal'}) })
---table.insert(menu_items, { "Debian", debian.menu.Debian_menu.Debian, freedesktop.utils.lookup_icon({ icon = 'debian-logo' }) })
---
---mymainmenu = awful.menu.new({ items = menu_items, width = 150 })
---
---mylauncher = awful.widget.launcher({ 
---        image = image(beautiful.icons .. "/widgets/menu.png"),
---        menu = mymainmenu })
---
----- desktop icons
-----require('freedesktop.freedesktop.desktop')
-----for s = 1, screen.count() do
-----      freedesktop.desktop.add_applications_icons({screen = s, showlabels = true})
-----      freedesktop.desktop.add_dirs_and_files_icons({screen = s, showlabels = true})
-----end
-----}}}
---
+--{{{ Applications menu
+-- largely based on awesome freedesktop (git submodule)
+require('freedesktop/freedesktop.utils')
+freedesktop.utils.terminal = config.terminal
+freedesktop.utils.icon_theme = {'mate','Mint-X-Dark','gnome'} -- look inside /usr/share/icons/, default: nil (don't use icon theme)
+require('freedesktop/freedesktop.menu')
+local debianMenu = loadrc("debian-menu") -- Load the debian menu
+
+menu_items = freedesktop.menu.new()
+myawesomemenu = {
+   { "manual", config.terminal .. " -e man awesome", freedesktop.utils.lookup_icon({ icon = 'help' }) },
+   { "edit config", config.editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua", freedesktop.utils.lookup_icon({ icon = 'package_settings' }) },
+   { "restart", awesome.restart, freedesktop.utils.lookup_icon({ icon = 'gtk-refresh' }) },
+   { "quit", awesome.quit, freedesktop.utils.lookup_icon({ icon = 'gtk-quit' }) }
+}
+table.insert(menu_items, { "awesome", myawesomemenu, beautiful.awesome_icon })
+table.insert(menu_items, { "open terminal", config.terminal, freedesktop.utils.lookup_icon({icon = 'terminal'}) })
+table.insert(menu_items, { "Debian", debian.menu.Debian_menu.Debian, freedesktop.utils.lookup_icon({ icon = 'debian-logo' }) })
+
+mymainmenu = awful.menu.new({ items = menu_items, width = 150 })
+
+mylauncher = awful.widget.launcher({ 
+        image = image(beautiful.icons .. "/widgets/menu.png"),
+        menu = mymainmenu })
+
+-- desktop icons
+--require('freedesktop.freedesktop.desktop')
+--for s = 1, screen.count() do
+--      freedesktop.desktop.add_applications_icons({screen = s, showlabels = true})
+--      freedesktop.desktop.add_dirs_and_files_icons({screen = s, showlabels = true})
+--end
+--}}}
+
 ----{{{ Wifi
 --local iwlist = loadrc("iwlist", "lib/iwlist")
 --
