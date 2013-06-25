@@ -264,59 +264,59 @@ mylauncher = awful.widget.launcher({
 --end
 --}}}
 
-----{{{ Wifi
---local iwlist = loadrc("iwlist", "lib/iwlist")
---
---local wifiwidget = widget({ type = "textbox" })
---local wifiicon = widget({ type = "imagebox" })
---wifiicon.image = image(beautiful.icons .. "/widgets/wifi.png")
---
---local wifitooltip= awful.tooltip({})
---wifitooltip:add_to_object(wifiwidget)
---
---vicious.register(wifiwidget, vicious.widgets.wifi, 
---    function(widget, args)
---        local tooltip = ("<b>mode</b> %s <b>chan</b> %s <b>rate</b> %s Mb/s"):format(
---                        args["{mode}"], args["{chan}"], args["{rate}"])
---        local quality = 0
---        if args["{linp}"] > 0 then
---          quality = args["{link}"] / args["{linp}"] * 100
---        end
---        wifitooltip:set_text(tooltip)
---        return ("%s: %.1f%%"):format(args["{ssid}"], quality)
---    end, 
---    7, "wlan0")
---
---wifiicon:buttons( wifiwidget:buttons(awful.util.table.join(
---    awful.button({}, 1,  -- left click
---    function()
---        local networks = iwlist.scan_networks()
---        if #networks > 0 then
---          local msg = {}
---          for i, ap in ipairs(networks) do
---            local line = "<b>ESSID:</b> %s <b>MAC:</b> %s <b>Qual.:</b> %.2f%% <b>%s</b>"
---            local enc = iwlist.get_encryption(ap)
---            msg[i] = line:format(ap.essid, ap.address, ap.quality, enc)
---          end
---          naughty.notify({text = table.concat(msg, "\n")})
---        else
---        end
---    end),
---    awful.button({ "Shift" }, 1,  -- left click
---    function ()
---    -- restart-auto-wireless is just a script of mine,
---    -- which just restart netcfg
---    -- TODO : change this
---    --    local wpa_cmd = "sudo restart-auto-wireless && notify-send 'wpa_actiond' 'restarted' || notify-send 'wpa_actiond' 'error on restart'"
---    --    awful.util.spawn_with_shell(wpa_cmd)
---    end),
---    awful.button({ }, 3,  -- right click
---    function ()  
---        vicious.force{wifiwidget} 
---    end)
---    )))
-----}}}
---
+--{{{ Wifi
+local iwlist = loadrc("iwlist", "lib/iwlist")
+
+local wifiwidget = widget({ type = "textbox" })
+local wifiicon = widget({ type = "imagebox" })
+wifiicon.image = image(beautiful.icons .. "/widgets/wifi.png")
+
+local wifitooltip= awful.tooltip({})
+wifitooltip:add_to_object(wifiwidget)
+
+vicious.register(wifiwidget, vicious.widgets.wifi, 
+    function(widget, args)
+        local tooltip = ("<b>mode</b> %s <b>chan</b> %s <b>rate</b> %s Mb/s"):format(
+                        args["{mode}"], args["{chan}"], args["{rate}"])
+        local quality = 0
+        if args["{linp}"] > 0 then
+          quality = args["{link}"] / args["{linp}"] * 100
+        end
+        wifitooltip:set_text(tooltip)
+        return ("%s: %.1f%%"):format(args["{ssid}"], quality)
+    end, 
+    7, "wlan0")
+
+wifiicon:buttons( wifiwidget:buttons(awful.util.table.join(
+    awful.button({}, 1,  -- left click
+    function()
+        local networks = iwlist.scan_networks()
+        if #networks > 0 then
+          local msg = {}
+          for i, ap in ipairs(networks) do
+            local line = "<b>ESSID:</b> %s <b>MAC:</b> %s <b>Qual.:</b> %.2f%% <b>%s</b>"
+            local enc = iwlist.get_encryption(ap)
+            msg[i] = line:format(ap.essid, ap.address, ap.quality, enc)
+          end
+          naughty.notify({text = table.concat(msg, "\n")})
+        else
+        end
+    end),
+    awful.button({ "Shift" }, 1,  -- left click
+    function ()
+    -- restart-auto-wireless is just a script of mine,
+    -- which just restart netcfg
+    -- TODO : change this
+    --    local wpa_cmd = "sudo restart-auto-wireless && notify-send 'wpa_actiond' 'restarted' || notify-send 'wpa_actiond' 'error on restart'"
+    --    awful.util.spawn_with_shell(wpa_cmd)
+    end),
+    awful.button({ }, 3,  -- right click
+    function ()  
+        vicious.force{wifiwidget} 
+    end)
+    )))
+--}}}
+
 --
 ---- {{{ Cmus info
 ---- Initialize widget
