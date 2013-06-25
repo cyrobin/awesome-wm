@@ -181,22 +181,22 @@ vicious.register(memwidget, vicious.widgets.mem,
 local memicon = widget({ type = "imagebox" })
 memicon.image = image(beautiful.icons .. "/widgets/mem.png")
 --}}}
---
-----{{{ Volume level
---local volicon = widget({ type = "imagebox" })
---volicon.image = image(beautiful.icons .. "/widgets/vol.png")
---local volwidget = widget({ type = "textbox" })
---vicious.register(volwidget, vicious.widgets.volume,
---		 '<span color="' .. beautiful.fg_widget_value .. '">$2 $1%</span>',
---		17, "Master")
---volume = loadrc("volume", "vbe/volume")
---volwidget:buttons(awful.util.table.join(
---		     awful.button({ }, 1, volume.mixer),
---		     awful.button({ }, 3, volume.toggle),
---		     awful.button({ }, 4, volume.increase),
---		     awful.button({ }, 5, volume.decrease)))
-----}}}
---
+
+--{{{ Volume level
+local volicon = widget({ type = "imagebox" })
+volicon.image = image(beautiful.icons .. "/widgets/vol.png")
+local volwidget = widget({ type = "textbox" })
+vicious.register(volwidget, vicious.widgets.volume,
+		 '<span color="' .. beautiful.fg_widget_value .. '">$2 $1%</span>',
+		17, "Master")
+volume = loadrc("volume", "lib/volume")
+volwidget:buttons(awful.util.table.join(
+		     awful.button({ }, 1, volume.mixer),
+		     awful.button({ }, 3, volume.toggle),
+		     awful.button({ }, 4, volume.increase),
+		     awful.button({ }, 5, volume.decrease)))
+--}}}
+
 --{{{ File systems
 local fs = { "/",
 	     "/home",
@@ -427,8 +427,8 @@ for s = 1, screen.count() do
 	on(1, systray),
 	-- Date + Calendar
 	sepclose, datewidget, screen.count() > 1 and dateicon or "", spacer,
---	-- Volume
---	on(2, volwidget), screen.count() > 1 and on(2, volicon) or "", on(2, spacer),
+	-- Volume
+	on(2, volwidget), screen.count() > 1 and on(2, volicon) or "", on(2, spacer),
     -- Battery
 	on(2, batwidget.widget),
 	on(2, batwidget.widget ~= "" and baticon or ""),
