@@ -44,13 +44,11 @@ os.execute(table.concat(execute, ";"))
 --{{{ Spawn various X programs
 xrun("polkit-gnome-authentication-agent-1",
      "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1")
-xrun("Bluetooth Applet",
-     "bluetooth-applet")
 --xrun("pidgin", "pidgin -n")
-xrun("nm-applet", "pkill nm-applet ; nm-applet")
 -- TODO : Dropbox
 
 if config.hostname == "alfred-laas" then
-   xrun("NetworkManager Applet", "nm-applet")
+   xrun("Bluetooth Applet", "bluetooth-applet")
+   xrun("NetworkManager Applet", "pkill nm-applet ; nm-applet ")
 end
 --}}}

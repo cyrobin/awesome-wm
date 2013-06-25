@@ -69,11 +69,15 @@ config.layouts = {
 --}}}
 
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+--beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 --{{{ Load remaining modules
 loadrc("xrun")			-- xrun function
+
 --loadrc("appearance")	-- theme and appearance settings
+-- Themes define colours, icons, and wallpapers
+beautiful.init(awful.util.getdir("config") .. "/rc/theme.lua")
+
 loadrc("debug")			-- debugging primitive `dbg()`
 
 loadrc("start")			-- programs to run on start
