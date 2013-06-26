@@ -24,7 +24,8 @@ Xft.rgba: rgb
 *color4:        #048ac7
 *color12:       #48c6ff
 ! magenta
-*color5:        #833c9f
+!*color5:        #833c9f
+*color5:        #A03C8A
 *color13:       #be67e1
 ! cyan 
 *color6:        #0ac1cd
