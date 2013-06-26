@@ -317,36 +317,15 @@ wifiicon:buttons( wifiwidget:buttons(awful.util.table.join(
     )))
 --}}}
 
---
----- {{{ Cmus info
----- Initialize widget
-----local cmuswidget = widget({ type = "textbox" })
-----local cmusicon = widget({ type = "imagebox" })
-----cmusicon.image = image(beautiful.widget_music)
------- Register widget
-----vicious.register(cmuswidget, vicious.widgets.cmus,
-----    function (widget, args)
-----        if args["{status}"] == "Stopped" then 
-----            return " - "
-----        else 
-----            if args["{title}"] ~= "" then
-----                return args["{status}"]..': '.. args["{artist}"]..' - '.. args["{title}"]..' ( '.. args["{album}"] .. ' )'
-----            else
-----                return args["{status}"]..': '.. args["{file}"]
-----            end
-----        end
-----    end, 7)
-------}}}
---
---
------- Cmus Widget
-----local cmus =  loadrc("cmus2", "lib/cmus2")
-----tb_cmus = widget({ type = "textbox", align = "right" })
------- refresh Cmus widget
-----cmus_timer = timer({timeout = 1})
-------cmus_timer:add_signal("timeout", function() tb_cmus.text = '| ' .. cmus.hook_cmus() .. ' ' end)
-------cmus_timer:start()
---
+--{{{ Cmus - music player
+--local cmus =  loadrc("cmus", "lib/cmus")
+loadrc("cmus")
+cmus_widget = widget({ type = "textbox", align = "right" })
+-- refresh Cmus widget
+cmus_timer = timer({timeout = 1})
+cmus_timer:add_signal("timeout", function() cmus_widget.text = ' ' .. hook_cmus() .. ' ' end)
+cmus_timer:start()
+--}}}
 
 -- Create a systray
 -- (especially, allows to display bluetooth and networkmanager applets)
@@ -448,17 +427,31 @@ for s = 1, screen.count() do
 	-- cpu usage
 	on(1, cpuwidget), on(1, cpuicon), on(1, sepopen),
 --	-- cmus
---	--on(2,sepclose),on(2, cmuswidget), on(2, cmusicon), on(2, sepopen),
-----	on(2,sepclose),on(2, tb_cmus), on(2, cmusicon), on(2, sepopen),
+    on(2,sepclose),on(2, cmus_widget), on(2, cmusicon), on(2, sepopen),
 	-- Other
 	tasklist[s],
 	layout = awful.widget.layout.horizontal.rightleft }
 end
 --}}}
 
+--{{{ key bindings for widgets
 config.keys.global = awful.util.table.join(
    config.keys.global,
+   -- Promt a command line
    awful.key({ modkey }, "r", function () promptbox[mouse.screen]:run() end,
-	     "Prompt for a command"))
+	     "Prompt for a command"),
+   -- CMUS control : multimedia key bindings
+   awful.key({ }, "XF86AudioPlay",        function() cmus_cmd("PlayPause") end),
+   awful.key({ }, "XF86AudioPause",       function() cmus_cmd("PlayPause") end),
+   awful.key({ }, "XF86AudioStop",        function() cmus_cmd("Stop") end),
+   awful.key({ }, "XF86AudioNext",        function() cmus_cmd("Next") end),
+   awful.key({ }, "XF86AudioPrev",        function() cmus_cmd("Previous") end),
+   -- CMUS control : Without multimedia keys
+   awful.key({ "Control", }, "Right", function () cmus_cmd("next") end),
+   awful.key({ "Control", }, "Left", function () cmus_cmd("previous") end),
+   awful.key({ "Control", }, "Up", function () cmus_cmd("stop") end),
+   awful.key({ "Control", }, "Down", function () cmus_cmd("play_pause") end)
+   )
+--}}}
 
 config.taglist = taglist
