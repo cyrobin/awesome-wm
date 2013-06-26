@@ -1,0 +1,6 @@
+[submodule "vicious"]
+	path = vicious
+	url = http://git.sysphere.org/vicious/
+[submodule "freedesktop"]
+	path = freedesktop
+	url = https://github.com/terceiro/awesome-freedesktop/
