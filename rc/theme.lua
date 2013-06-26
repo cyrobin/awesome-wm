@@ -3,11 +3,21 @@
 local na = awful.util.color_strip_alpha
 local icons = awful.util.getdir("config") .. "/icons"
 
+--{{{ Configure according to global settings
+local background_img = awful.util.getdir("config") .. "/wallpaper/background"
+if config.env == "light" then
+    background_img = background_img .. "-light.png"
+else
+    background_img = background_img .. "-dark.png"
+end
+--}}}
+
 --{{{ Main -- (icons, wallpaper and font)
 theme = {}
 theme.icons = icons
 --theme.wallpaper_cmd = { "/bin/true" }
-theme.wallpaper_cmd = { "awsetbg " .. awful.util.getdir("config") .. "/wallpaper/background.png" }
+--theme.wallpaper_cmd = { "awsetbg " .. awful.util.getdir("config") .. "/wallpaper/background.png" }
+theme.wallpaper_cmd = { "awsetbg " .. background_img }
 theme.font = "Terminus 8"
 theme.tasklist_font = "DejaVu Sans 8"
 --}}}

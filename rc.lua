@@ -68,6 +68,9 @@ config.layouts = {
    awful.layout.suit.max,
    --awful.layout.suit.floating,
 }
+
+--  Choose between 'light' or 'dark', to adapt colors and display
+config.env = "dark"
 --}}}
 
 -- Themes define colours, icons, and wallpapers

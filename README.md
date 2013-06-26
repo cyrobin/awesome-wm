@@ -7,3 +7,4 @@ This is my [awesome](http://awesome.naquadah.org) configuration.
 
 Largely insipired by Vincent Bernat's awesome configuration.
 
+Background images taken from the conscience themes.

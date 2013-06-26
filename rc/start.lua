@@ -10,6 +10,15 @@ end
 -- Spawn a compositing manager
 awful.util.spawn("xcompmgr", false)
 
+--{{{ Configure according to global settings
+local Xresources = "/Xresources"
+if config.env == "light" then
+    Xresources = Xresources .. "-light"
+else
+    Xresources = Xresources .. "-dark"
+end
+--}}}
+
 --{{{ Start idempotent commands
 local execute = {
    -- Start PulseAudio
@@ -18,7 +27,7 @@ local execute = {
    -- Enable numlock
    "numlockx on",
    -- Read resources
-   "xrdb -merge " .. awful.util.getdir("config") .. "/Xresources",
+   "xrdb -merge " .. awful.util.getdir("config") .. Xresources,
    -- Default browser
    "xdg-mime default " .. config.browser .. ".desktop x-scheme-handler/http",
    "xdg-mime default " .. config.browser .. ".desktop x-scheme-handler/https",

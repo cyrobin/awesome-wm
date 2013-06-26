@@ -1,8 +1,15 @@
 -- Lockscreen
 local icons = loadrc("icons", "lib/icons")
 
+--{{{ Configure according to global settings
 -- The background screensaver image must be a png file for i3lock
-local screenSaver = awful.util.getdir("config") .. "/wallpaper/background.png"
+local screenSaver = awful.util.getdir("config") .. "/wallpaper/background"
+if config.env == "light" then
+    screenSaver = screenSaver .. "-light.png"
+else
+    screenSaver = screenSaver .. "-dark.png"
+end
+--}}}
 
 --{{{ autolock the screen when there is no activity
 xrun("xautolock",
