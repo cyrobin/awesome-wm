@@ -4,10 +4,7 @@ local shifty = loadrc("shifty", "lib/shifty")
 local keydoc = loadrc("keydoc", "lib/keydoc")
 
 local tagicon = function(icon) --{{{
-   --if screen.count() > 1 then
-   --   return beautiful.icons .. "/taglist/" .. icon .. ".png"
-   --end
-   return nil
+   return beautiful.icons .. "/taglist/" .. icon .. ".png"
 end--}}}
 
 shifty.config.tags = { --{{{
@@ -48,7 +45,7 @@ shifty.config.tags = { --{{{
       exclusive = true,
       screen = math.max(screen.count(), 2),
       spawn = config.player,
-      --icon = tagicon("main"),
+      icon = tagicon("music"),
       nopopup = true,           -- don't give focus on creation
    }
 }--}}}
@@ -71,14 +68,7 @@ shifty.config.apps = {--{{{
       },
       intrusive = true,         -- Display even on exclusive tags
    },
-   --{
-   --   match = { class = { "Keepassx", "Key[-]mon" },
-   --             role = { "pop[-]up" },
-   --             name = { "Firebug" },
-   --             instance = { "plugin[-]container", "exe" } },
-   --   intrusive = true,
-   --},
-   -- Add rule for music
+   --TODO Add rule for music Cmus and vlc
 }--}}}
 
 shifty.config.defaults = {--{{{
@@ -120,9 +110,6 @@ config.keys.global = awful.util.table.join(
                 end
              end,
              "Send all tags to next screen"),
-   --awful.key({ modkey }, 0, shifty.add, "Create a new tag"),
-   --awful.key({ modkey, "Shift" }, 0, shifty.del, "Delete tag"),
-   --awful.key({ modkey, "Control" }, 0, shifty.rename, "Rename tag"))
    awful.key({ modkey }, "n", shifty.add, "Create a new tag"),
    awful.key({ modkey, "Shift" }, "n", shifty.del, "Delete tag"),
    awful.key({ modkey, "Control" }, "n", shifty.rename, "Rename tag"))
