@@ -14,13 +14,10 @@ spacer.image = image(beautiful.icons .. "/widgets/spacer.png")
 
 --{{{ Date (includes a calendar)
 local datewidget = widget({ type = "textbox" })
-local dateformat = "%H:%M"
-if screen.count() > 1 then dateformat = "%a %d/%m, " .. dateformat end
+local dateformat = "%a %d/%m, %H:%M"
 vicious.register(datewidget, vicious.widgets.date,
 		 '<span color="' .. beautiful.fg_widget_clock .. '">' ..
 		    dateformat .. '</span>', 61)
-local dateicon = widget({ type = "imagebox" })
-dateicon.image = image(beautiful.icons .. "/widgets/clock.png")
 local cal = (
    function()
       local calendar = nil
@@ -86,9 +83,18 @@ vicious.register(cpuwidget, vicious.widgets.cpu,
 		 function (widget, args)
 		    return string.format('<span color="' .. beautiful.fg_widget_value .. '">%2d%%</span>',
 					 args[1])
-		 end, 7)
+		 end, 3)
 local cpuicon = widget({ type = "imagebox" })
 cpuicon.image = image(beautiful.icons .. "/widgets/cpu.png")
+-- CPU Graph
+cpugraph = awful.widget.graph()
+-- Graph properties
+cpugraph:set_width(40):set_height(16)
+cpugraph:set_border_color(beautiful.fg_widget_border)
+cpugraph:set_background_color("#000000")
+cpugraph:set_color("#30BB77")
+-- Register widget
+vicious.register(cpugraph, vicious.widgets.cpu, "$1")
 --}}}
 
 --{{{ Battery
@@ -119,8 +125,7 @@ if config.laptop then
 		       return string.format('<span color="' .. color ..
 			     '">%s%d%% (%s)</span>', args[1], current,args[3])
 		    end,
---		    59, "BAT1")
-	        61, "BAT0")
+	        60, "BAT0")
 end
 local baticon = widget({ type = "imagebox" })
 baticon.image = image(beautiful.icons .. "/widgets/bat.png")
@@ -177,9 +182,18 @@ vicious.register(netup, vicious.widgets.net,
 local memwidget = widget({ type = "textbox" })
 vicious.register(memwidget, vicious.widgets.mem,
 		 '<span color="' .. beautiful.fg_widget_value .. '">$1%</span>',
-		 19)
+		 1)
 local memicon = widget({ type = "imagebox" })
 memicon.image = image(beautiful.icons .. "/widgets/mem.png")
+-- Memory Graph
+memgraph = awful.widget.graph()
+-- Graph properties
+memgraph:set_width(40):set_height(16)
+memgraph:set_border_color(beautiful.fg_widget_border)
+memgraph:set_background_color("#000000")
+memgraph:set_color("#77BBCC")
+-- Register widget
+vicious.register(memgraph, vicious.widgets.mem, "$1")
 --}}}
 
 --{{{ Volume level
@@ -202,12 +216,9 @@ local fs = { "/",
 	     "/home",
 	     "/var",
 	     "/usr",
-	     "/tmp",
-	     "/var/cache/build",
-	     "/var/lib/mongodb",
-             "/var/lib/systems" }
-local fsicon = widget({ type = "imagebox" })
-fsicon.image = image(beautiful.icons .. "/widgets/disk.png")
+	     "/tmp"}
+--local fsicon = widget({ type = "imagebox" })
+--fsicon.image = image(beautiful.icons .. "/widgets/disk.png")
 local fswidget = widget({ type = "textbox" })
 vicious.register(fswidget, vicious.widgets.fs,
 		 function (widget, args)
@@ -216,15 +227,15 @@ vicious.register(fswidget, vicious.widgets.fs,
 		       local used = args["{" .. path .. " used_p}"]
 		       local color = beautiful.fg_widget_value
 		       if used then
-			  if used > 90 then
-			     color = beautiful.fg_widget_value_important
-			  end
-                          local name = string.gsub(path, "[%w/]*/(%w+)", "%1")
-                          if name == "/" then name = "root" end
-			  result = string.format(
-			     '%s%s<span color="' .. beautiful.fg_widget_label .. '">%s: </span>' ..
-				'<span color="' .. color .. '">%2d%%</span>',
-			     result, #result > 0 and " " or "", name, used)
+			      if used > 90 then
+			         color = beautiful.fg_widget_value_important
+			      end
+                  local name = string.gsub(path, "[%w/]*/(%w+)", "%1")
+                  if name == "/" then name = "root" end
+			      result = string.format(
+			        '%s%s<span color="' .. beautiful.fg_widget_label .. '">%s: </span>' ..
+				    '<span color="' .. color .. '">%2d%%</span>',
+			      result, #result > 0 and " " or "", name, used)
 		       end
 		    end
 		    return result
@@ -256,12 +267,6 @@ mylauncher = awful.widget.launcher({
         image = image(beautiful.icons .. "/widgets/menu.png"),
         menu = mymainmenu })
 
--- desktop icons
---require('freedesktop.freedesktop.desktop')
---for s = 1, screen.count() do
---      freedesktop.desktop.add_applications_icons({screen = s, showlabels = true})
---      freedesktop.desktop.add_dirs_and_files_icons({screen = s, showlabels = true})
---end
 --}}}
 
 --{{{ Wifi
@@ -351,8 +356,7 @@ tasklist.buttons = awful.util.table.join(
 		      if not c:isvisible() then
 			 awful.tag.viewonly(c:tags()[1])
 		      end
-		      -- This will also un-minimize
-		      -- the client, if needed
+		      -- This will also un-minimize the client, if needed
 		      client.focus = c
 		      c:raise()
 		   end
@@ -405,7 +409,7 @@ for s = 1, screen.count() do
 	-- Systray
 	on(1, systray),
 	-- Date + Calendar
-	sepclose, datewidget, screen.count() > 1 and dateicon or "", spacer,
+	sepclose, datewidget, spacer,
 	-- Volume
 	on(2, volwidget), screen.count() > 1 and on(2, volicon) or "", on(2, spacer),
     -- Battery
@@ -413,7 +417,7 @@ for s = 1, screen.count() do
 	on(2, batwidget.widget ~= "" and baticon or ""),
 	on(2, batwidget.widget ~= "" and spacer or ""),
     -- File system storage
-	on(2, fswidget), screen.count() > 1 and on(2, fsicon) or "",
+	on(2, fswidget),
     -- net graph -- not displayed if only one screen
 	screen.count() > 1 and on(2, sepopen) or on(2, spacer),
 	screen.count() > 1 and on(1, netgraph.widget) or "",
@@ -422,8 +426,14 @@ for s = 1, screen.count() do
 	on(1, netupicon), on(1, netup), on(1, spacer),
 	-- wifi
 	on(1, wifiwidget), on(1, wifiicon), on(1, spacer),
+    -- mem graph -- not displayed if only one screen
+	screen.count() > 1 and on(2, sepopen) or on(2, spacer),
+	screen.count() > 1 and on(1, memgraph.widget) or "",
     -- memory usage
 	on(1, memwidget), on(1, memicon), on(1, spacer),
+    -- cpu graph -- not displayed if only one screen
+	screen.count() > 1 and on(2, sepopen) or on(2, spacer),
+	screen.count() > 1 and on(1, cpugraph.widget) or "",
 	-- cpu usage
 	on(1, cpuwidget), on(1, cpuicon), on(1, sepopen),
 --	-- cmus
