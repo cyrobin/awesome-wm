@@ -82,17 +82,19 @@ local cpuwidget = widget({ type = "textbox" })
 vicious.register(cpuwidget, vicious.widgets.cpu,
 		 function (widget, args)
 		    local result = ""
-		    local color = beautiful.fg_widget_value
+		    local color = beautiful.fg_widget_value_ok
 		    local used = args[1]
 		    if used then
-			   if used > 90 then
+			   if used > 80 then
+			      color = beautiful.fg_widget_value_warning
+              elseif used > 90 then
 			      color = beautiful.fg_widget_value_important
 			   end
 		       result = string.format('<span color="' .. color .. '">%d%%</span>',
 					 used)
 			end
 			return result
-		 end, 3)
+		 end, 1)
 local cpuicon = widget({ type = "imagebox" })
 cpuicon.image = image(beautiful.icons .. "/widgets/cpu.png")
 -- CPU Graph
@@ -112,10 +114,13 @@ if config.laptop then
    batwidget.widget = widget({ type = "textbox" })
    vicious.register(batwidget.widget, vicious.widgets.bat,
 		    function (widget, args)
-		       local color = beautiful.fg_widget_value
+		       local color = beautiful.fg_widget_value_ok
 		       local current = args[2]
-		       if current < 20 and args[1] == "-" then
-			     color = beautiful.fg_widget_warning
+		       if current < 100 and args[1] == "-" then
+			     color = beautiful.fg_widget_value
+			   end
+		       if current < 30 and args[1] == "-" then
+			     color = beautiful.fg_widget_value_warning
 			   end
 		       if current < 10 and args[1] == "-" then
 			     color = beautiful.fg_widget_value_important
@@ -137,7 +142,7 @@ if config.laptop then
 		       return string.format('<span color="' .. color ..
 			     '">%s%d%% (%s)</span>', args[1], current,args[3])
 		    end,
-	        60, "BAT0")
+	        61, "BAT0")
 end
 local baticon = widget({ type = "imagebox" })
 baticon.image = image(beautiful.icons .. "/widgets/bat.png")
@@ -187,7 +192,7 @@ vicious.register(netup, vicious.widgets.net,
        -- Up
        return string.format('<span color="' .. beautiful.fg_widget_value ..
 			    '">%08s</span>', format(up))
-    end, 3)
+    end, 1)
 --}}}
 
 --{{{ Memory usage
@@ -195,17 +200,19 @@ local memwidget = widget({ type = "textbox" })
 vicious.register(memwidget, vicious.widgets.mem,
 		 function (widget, args)
 		    local result = ""
-		    local color = beautiful.fg_widget_value
+		    local color = beautiful.fg_widget_value_ok
 		    local used = args[1]
 		    if used then
-			   if used > 90 then
+			   if used > 80 then
+			      color = beautiful.fg_widget_value_warning
+               elseif used > 90 then
 			      color = beautiful.fg_widget_value_important
 			   end
 		       result = string.format('<span color="' .. color .. '">%d%%</span>',
 					 used)
 			end
 			return result
-		 end, 3)
+		 end, 1)
 		 --'<span color="' .. beautiful.fg_widget_value .. '">$1%</span>',
 		 --1)
 local memicon = widget({ type = "imagebox" })

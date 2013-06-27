@@ -44,11 +44,12 @@ theme.bg_widget        = "#000000BB"
 --theme.fg_widget_label  = "#737d8c"
 theme.fg_widget_label  = "#939dac"
 theme.fg_widget_value  = na(theme.fg_normal)
+theme.fg_widget_value_ok  = na(theme.fg_focus)
+theme.fg_widget_value_warning= "#e1e363"
 theme.fg_widget_value_important  = "#E80F28"
 theme.fg_widget_border = theme.fg_widget_label
 theme.fg_widget_clock  = na(theme.border_focus)
 theme.fg_widget_cmus   = "#50d0fc"
-theme.fg_widget_warning= "#e1e363"
 --}}}
 
 --{{{ Taglist

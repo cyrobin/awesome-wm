@@ -16,7 +16,8 @@ Xft.rgba: rgb
 !*color2:        #cee318
 !*color10:       #ccff00
 *color2:     #A6E22E
-*color10:    #B6E354
+!*color10:    #B6E354
+*color10:     #80ff00
 !! yellow
 *color3:        #ffe755
 *color11:       #ff9f00
