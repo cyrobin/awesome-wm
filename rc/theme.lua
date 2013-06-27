@@ -21,15 +21,15 @@ theme.font = "Terminus 8"
 theme.tasklist_font = "DejaVu Sans 8"
 --}}}
 
---{{{ Color
+--{{{ Main colors
 theme.bg_normal     = "#22222299"
-theme.bg_focus      = "#d8d8d8bb"
+theme.bg_focus      = "#222222"
 theme.bg_urgent     = "#d02e5499"
 theme.bg_minimize   = "#44444499"
 
 theme.fg_normal     = "#cccccc"
 theme.fg_normal     = "#eeeeee"
-theme.fg_focus      = "#000000"
+theme.fg_focus      = "#80ff00"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
@@ -39,23 +39,16 @@ theme.border_focus  = "#FF7F00EE"
 theme.border_marked = "#91231c66"
 --}}}
 
---{{{ My own Color
-theme.bg_focus      = "#222222"
-theme.fg_focus      = "#80ff00"
-
-theme.border_width  = 2
-theme.border_normal = "#00000000"
-theme.border_focus  = "#FF7F00EE"
-theme.border_marked = "#91231c66"
---}}}
-
 --{{{ Widget stuff
 theme.bg_widget        = "#000000BB"
-theme.fg_widget_label  = "#737d8c"
+--theme.fg_widget_label  = "#737d8c"
+theme.fg_widget_label  = "#939dac"
 theme.fg_widget_value  = na(theme.fg_normal)
 theme.fg_widget_value_important  = "#E80F28"
 theme.fg_widget_border = theme.fg_widget_label
 theme.fg_widget_clock  = na(theme.border_focus)
+theme.fg_widget_cmus   = "#50d0fc"
+theme.fg_widget_warning= "#e1e363"
 --}}}
 
 --{{{ Taglist

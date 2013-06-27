@@ -64,12 +64,16 @@ function hook_cmus() --{{{
           else
               cmus_string = '\> ' .. cmus_string .. ''
           end
+          cmus_string = '<span color="' .. theme.fg_widget_cmus .. '">' .. cmus_string .. '</span>'
       else
-          cmus_string = '-- not playing --'
+          --cmus_string = '-- not playing --'
+          cmus_string = '<span color="' .. theme.fg_widget_warning .. '">' .. '-- not playing --' .. '</span>'
       end
       return cmus_string
   else
-      return '-- not running --'
+      return '<span color="' .. theme.fg_widget_value_important .. '">' .. '-- not running --' .. '</span>'
+
+		       
   end
 end--}}}
 

@@ -81,8 +81,17 @@ datewidget:buttons(awful.util.table.join(
 local cpuwidget = widget({ type = "textbox" })
 vicious.register(cpuwidget, vicious.widgets.cpu,
 		 function (widget, args)
-		    return string.format('<span color="' .. beautiful.fg_widget_value .. '">%2d%%</span>',
-					 args[1])
+		    local result = ""
+		    local color = beautiful.fg_widget_value
+		    local used = args[1]
+		    if used then
+			   if used > 90 then
+			      color = beautiful.fg_widget_value_important
+			   end
+		       result = string.format('<span color="' .. color .. '">%d%%</span>',
+					 used)
+			end
+			return result
 		 end, 3)
 local cpuicon = widget({ type = "imagebox" })
 cpuicon.image = image(beautiful.icons .. "/widgets/cpu.png")
@@ -105,6 +114,9 @@ if config.laptop then
 		    function (widget, args)
 		       local color = beautiful.fg_widget_value
 		       local current = args[2]
+		       if current < 20 and args[1] == "-" then
+			     color = beautiful.fg_widget_warning
+			   end
 		       if current < 10 and args[1] == "-" then
 			     color = beautiful.fg_widget_value_important
 			     -- Maybe we want to display a small warning?
@@ -181,8 +193,21 @@ vicious.register(netup, vicious.widgets.net,
 --{{{ Memory usage
 local memwidget = widget({ type = "textbox" })
 vicious.register(memwidget, vicious.widgets.mem,
-		 '<span color="' .. beautiful.fg_widget_value .. '">$1%</span>',
-		 1)
+		 function (widget, args)
+		    local result = ""
+		    local color = beautiful.fg_widget_value
+		    local used = args[1]
+		    if used then
+			   if used > 90 then
+			      color = beautiful.fg_widget_value_important
+			   end
+		       result = string.format('<span color="' .. color .. '">%d%%</span>',
+					 used)
+			end
+			return result
+		 end, 3)
+		 --'<span color="' .. beautiful.fg_widget_value .. '">$1%</span>',
+		 --1)
 local memicon = widget({ type = "imagebox" })
 memicon.image = image(beautiful.icons .. "/widgets/mem.png")
 -- Memory Graph
@@ -201,7 +226,21 @@ local volicon = widget({ type = "imagebox" })
 volicon.image = image(beautiful.icons .. "/widgets/vol.png")
 local volwidget = widget({ type = "textbox" })
 vicious.register(volwidget, vicious.widgets.volume,
-		 '<span color="' .. beautiful.fg_widget_value .. '">$2 $1%</span>',
+		 function (widget, args)
+		    local result = ""
+		    local color = beautiful.fg_widget_value
+		    local used = args[1]
+		    if used then
+			   if used == 0 then
+			      color = beautiful.fg_widget_value_important
+			   end
+		       result = string.format(
+			        '<span color="' .. beautiful.fg_widget_value .. '">%s </span>' ..
+                    '<span color="' .. color .. '">%d%%</span>',
+					 args[2],used)
+			end
+			return result
+         end,
 		17, "Master")
 volume = loadrc("volume", "lib/volume")
 volwidget:buttons(awful.util.table.join(
