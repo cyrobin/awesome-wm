@@ -28,8 +28,10 @@ Xft.rgba: rgb
 *color2:      #00A250
 *color10:     #007427
 ! CYAN
-*color6:      #00A4C1
-*color14:     #007693
+!*color6:      #00A4C1
+!*color14:     #007693
+*color6:      #0094A1
+*color14:     #006683
 ! BLUE
 *color4:      #208FFB
 *color12:     #0065CA
