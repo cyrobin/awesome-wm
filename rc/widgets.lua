@@ -116,31 +116,37 @@ if config.laptop then
 		    function (widget, args)
 		       local color = beautiful.fg_widget_value_ok
 		       local current = args[2]
-		       if current < 100 and args[1] == "-" then
-			     color = beautiful.fg_widget_value
-			   end
-		       if current < 30 and args[1] == "-" then
-			     color = beautiful.fg_widget_value_warning
-			   end
-		       if current < 10 and args[1] == "-" then
-			     color = beautiful.fg_widget_value_important
-			     -- Maybe we want to display a small warning?
-			     if current ~= batwidget.lastwarn then
-			        batwidget.lastid = naughty.notify(
-			       { title = "Battery low!",
-			         preset = naughty.config.presets.critical,
-			         timeout = 20,
-			         text = "Battery level is currently " ..
-			            current .. "%.\n" .. args[3] ..
-			            " left before running out of power.",
-			         icon = icons.lookup({name = "battery-caution",
-			       		       type = "status"}),
-			         replaces_id = batwidget.lastid }).id
-			        batwidget.lastwarn = current
-			     end
+		       local symbol = args[1]
+		       if symbol == "-" then
+		           symbol = "↘"
+		           if current < 100 then
+			          color = beautiful.fg_widget_value
+			       end
+		           if current < 30 then
+			          color = beautiful.fg_widget_value_warning
+			       end
+		           if current < 10 then
+			          color = beautiful.fg_widget_value_important
+			          -- Maybe we want to display a small warning?
+			          if current ~= batwidget.lastwarn then
+			             batwidget.lastid = naughty.notify(
+			            { title = "Battery low!",
+			              preset = naughty.config.presets.critical,
+			              timeout = 20,
+			              text = "Battery level is currently " ..
+			                 current .. "%.\n" .. args[3] ..
+			                 " left before running out of power.",
+			              icon = icons.lookup({name = "battery-caution",
+			            		       type = "status"}),
+			              replaces_id = batwidget.lastid }).id
+			             batwidget.lastwarn = current
+			          end
+		            end
+		       elseif args[1]=="+" then
+		           symbol = "↗"
 		       end
 		       return string.format('<span color="' .. color ..
-			     '">%s%d%% (%s)</span>', args[1], current,args[3])
+			     '">%s%d%% (%s)</span>', symbol, current,args[3])
 		    end,
 	        61, "BAT0")
 end
