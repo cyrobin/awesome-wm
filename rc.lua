@@ -71,6 +71,7 @@ config.layouts = {
 
 --  Choose between 'light' or 'dark', to adapt colors and display
 config.env = "dark"
+--config.env = "light"
 --}}}
 
 --{{{ Load remaining modules
