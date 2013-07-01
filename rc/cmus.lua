@@ -45,18 +45,26 @@ function hook_cmus() --{{{
       cmus_info = io.popen("cmus-remote -Q"):read("*all")
       cmus_state = string.gsub(string.match(cmus_info, "status %a*"),"status ","")
       if cmus_state == "playing" or cmus_state == "paused" then
-          cmus_artist = string.gsub(string.match(cmus_info, "tag artist %C*"), "tag artist ","")
-          cmus_title = string.gsub(string.match(cmus_info, "tag title %C*"), "tag title ","")
+
+          cmus_artist = string.match(cmus_info, "tag artist %C*")
+          if cmus_artist == nil then
+            cmus_artist = "unknown artist"
+          else 
+            cmus_artist = string.gsub(cmus_artist, "tag artist ","")
+          end
+
+          cmus_title = string.match(cmus_info, "tag title %C*")
+          if cmus_title == nil then
+              cmus_title = "unknown title"
+          else
+            cmus_title = string.gsub(cmus_title, "tag title ","")
+          end
+
           cmus_curtime = string.gsub(string.match(cmus_info, "position %d*"), "position ","")
           cmus_curtime_formated = math.floor(cmus_curtime/60) .. ':' .. string.format("%02d",cmus_curtime % 60)
           cmus_totaltime = string.gsub(string.match(cmus_info, "duration %d*"), "duration ","")
           cmus_totaltime_formated = math.floor(cmus_totaltime/60) .. ':' .. string.format("%02d",cmus_totaltime % 60)
-          if cmus_artist == "" then
-              cmus_artist = "unknown artist"
-          end
-          if cmus_title == "" then
-              cmus_title = "unknown title"
-          end
+
           -- cmus_title = string.format("%.5c", cmus_title)
           cmus_string = cmus_artist .. " - " .. cmus_title .. " (" .. cmus_curtime_formated .. "/" .. cmus_totaltime_formated .. ")"
           if cmus_state == "paused" then
@@ -66,7 +74,6 @@ function hook_cmus() --{{{
           end
           cmus_string = '<span color="' .. theme.fg_widget_cmus .. '">' .. cmus_string .. '</span>'
       else
-          --cmus_string = '-- not playing --'
           cmus_string = '<span color="' .. theme.fg_widget_value_warning .. '">' .. '-- not playing --' .. '</span>'
       end
       return cmus_string
