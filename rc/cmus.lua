@@ -73,6 +73,10 @@ function hook_cmus() --{{{
               cmus_string = '\> ' .. cmus_string .. ''
           end
           cmus_string = '<span color="' .. theme.fg_widget_cmus .. '">' .. cmus_string .. '</span>'
+
+          -- remove "&" from the span field
+          cmus_string = string.gsub(cmus_string, "&","and")
+
       else
           cmus_string = '<span color="' .. theme.fg_widget_value_warning .. '">' .. '-- not playing --' .. '</span>'
       end
