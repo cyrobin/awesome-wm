@@ -488,12 +488,10 @@ for s = 1, screen.count() do
 	-- wifi
 	on(1, wifiwidget), on(1, wifiicon), on(1, spacer),
     -- mem graph -- not displayed if only one screen
-	screen.count() > 1 and on(2, sepopen) or on(2, spacer),
 	screen.count() > 1 and on(1, memgraph.widget) or "",
     -- memory usage
 	on(1, memwidget), on(1, memicon), on(1, spacer),
     -- cpu graph -- not displayed if only one screen
-	screen.count() > 1 and on(2, sepopen) or on(2, spacer),
 	screen.count() > 1 and on(1, cpugraph.widget) or "",
 	-- cpu usage
 	on(1, cpuwidget), on(1, cpuicon), on(1, sepopen),
