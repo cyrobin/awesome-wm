@@ -18,6 +18,6 @@ config.keys.global = awful.util.table.join(
 config.keys.global = awful.util.table.join(
    config.keys.global,
    --awful.key({ modkey, }, "BackSpace", function() awful.util.spawn("xautolock -locknow", false) end))
-   awful.key({ modkey, }, "BackSpace", 
+   awful.key({ modkey, "Control" }, "BackSpace", 
         function() awful.util.spawn("i3lock -n -i " .. screenSaver .. " -t", false) end))
 ---}}}
