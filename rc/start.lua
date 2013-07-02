@@ -59,5 +59,6 @@ xrun("polkit-gnome-authentication-agent-1",
 if config.hostname == "alfred-laas" then
    xrun("Bluetooth Applet", "bluetooth-applet")
    xrun("NetworkManager Applet", "pkill nm-applet ; nm-applet ")
+   xrun("Dropbox", "dropbox start")
 end
 --}}}
