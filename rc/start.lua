@@ -54,11 +54,12 @@ os.execute(table.concat(execute, ";"))
 xrun("polkit-gnome-authentication-agent-1",
      "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1")
 --xrun("pidgin", "pidgin -n")
--- TODO : Dropbox
+xrun("Dropbox", "dropbox start")
 
 if config.hostname == "alfred-laas" then
+   --xrun("Conky", "conky")
+   xrun("Conky", "sh /home/crobin/.conky/conky_start & ") -- specific script launching several conky instances
    xrun("Bluetooth Applet", "bluetooth-applet")
    xrun("NetworkManager Applet", "pkill nm-applet ; nm-applet ")
-   xrun("Dropbox", "dropbox start")
 end
 --}}}

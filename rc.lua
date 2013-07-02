@@ -87,6 +87,7 @@ loadrc("signals")		-- window manager behaviour
 loadrc("rules")			-- window rules
 loadrc("quake")			-- quake console
 loadrc("xrandr")		-- xrandr menu
+loadrc("todo.txt")			-- todo.txt quake console
 --}}}
 
 root.keys(config.keys.global)
