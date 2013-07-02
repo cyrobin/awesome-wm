@@ -171,8 +171,14 @@ config.keys.global = awful.util.table.join(
    awful.key({ modkey, "Control" }, "r", awesome.restart),
 
    -- Quit awesome
-   --awful.key({ modkey, "Shift"   }, "q", awesome.quit),
    awful.key({ modkey, }, "q", awesome.quit),
+
+   -- System key bindings
+   awful.key({ modkey, "Shift"   }, "q", function () awful.util.spawn( awful.util.getdir("config") .. "/bin/shutdown.sh") end, "Shutdown System"),
+   --{ "shutdown", awful.util.getdir("config") .. "/bin/shutdown.sh" },
+   --{ "reboot", awful.util.getdir("config") .. "/bin/reboot.sh" },
+   --{ "suspend", awful.util.getdir("config") .. "/bin/suspend.sh" },
+   --{ "hibernate", awful.util.getdir("config") .. "/bin/hibernate.sh" }
 
    -- Multimedia keys
    awful.key({ }, "XF86MonBrightnessUp",   brightness.increase),
