@@ -393,6 +393,26 @@ cmus_timer:add_signal("timeout", function() cmus_widget.text = ' ' .. hook_cmus(
 cmus_timer:start()
 --}}}
 
+--{{{ Keyboard map indicator and changer
+kbdcfg = {}
+kbdcfg.cmd = "setxkbmap"
+kbdcfg.layout = { "us", "fr" } -- also : "dvorak"
+kbdcfg.current = 2  -- fr is our default layout
+kbdcfg.widget = widget({ type = "textbox", align = "right" })
+kbdcfg.widget.text = " " .. kbdcfg.layout[kbdcfg.current] .. " "
+kbdcfg.switch = function ()
+   kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+   local t = " " .. kbdcfg.layout[kbdcfg.current] .. " "
+   kbdcfg.widget.text = t
+   os.execute( kbdcfg.cmd .. t )
+end
+
+-- Mouse bindings
+kbdcfg.widget:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () kbdcfg.switch() end)
+))
+--}}}
+
 -- Create a systray
 -- (especially, allows to display bluetooth and networkmanager applets)
 local systray = widget({ type = "systray" })
@@ -471,6 +491,8 @@ for s = 1, screen.count() do
 	on(1, systray),
 	-- Date + Calendar
 	sepclose, datewidget, spacer,
+	-- Keyboard layout
+    kbdcfg.widget, spacer,
 	-- Volume
 	on(2, volwidget), screen.count() > 1 and on(2, volicon) or "", on(2, spacer),
     -- Battery
@@ -516,10 +538,13 @@ config.keys.global = awful.util.table.join(
    awful.key({ }, "XF86AudioNext",        function() cmus_cmd("Next") end),
    awful.key({ }, "XF86AudioPrev",        function() cmus_cmd("Previous") end),
    -- CMUS control : Without multimedia keys
-   awful.key({ "Control", }, "Right", function () cmus_cmd("next") end),
-   awful.key({ "Control", }, "Left", function () cmus_cmd("previous") end),
-   awful.key({ "Control", }, "Up", function () cmus_cmd("stop") end),
-   awful.key({ "Control", }, "Down", function () cmus_cmd("play_pause") end)
+   awful.key({ "Control", }, "Down", function () cmus_cmd("play_pause") end,"Cmus play/pause"),
+   awful.key({ "Control", }, "Up", function () cmus_cmd("stop") end, "Cmus stop"),
+   awful.key({ "Control", }, "Right", function () cmus_cmd("next") end, "Cmus next"),
+   awful.key({ "Control", }, "Left", function () cmus_cmd("previous") end, "Cmus prev"),
+
+   -- Switch the keyboard layout
+   awful.key({ modkey  }, "e" , function () kbdcfg.switch() end, "Switch Keyboard")
    )
 --}}}
 
