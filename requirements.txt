@@ -1,0 +1,30 @@
+# Packages needed
+
+awesome
+awesome-extra
+i3lock
+libnotify-bin
+xfonts-terminus
+ttf-dejavu
+xcompmgr
+alsa-utils
+pavucontrol
+gnome-bluetooth
+pulseaudio
+numlockx
+rxvt-unicode-256color
+xbacklight
+NetworkManager
+nm-applet
+dropbox
+cmus
+
+# Former requirements - not used anymore
+(xautolock)
+(pidgin)
+
+# icons
+--fvwm
+--fvwm-crystal
+--gnome-themes-standard
+--gnome-wine-icon-theme
