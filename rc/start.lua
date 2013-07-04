@@ -41,9 +41,6 @@ if config.hostname == "alfred-laas" then
       execute, {
      -- Mouse acceleration
 	 "xset m 3 3",
-	 -- Keyboards set up and toggle
-	 "setxkbmap fr,us '' compose:rwin ctrl:nocaps grp:rctrl_rshift_toggle",
-	 --"xmodmap -e 'keysym Pause = XF86ScreenSaver'",
 	       })
 end
 --}}}
