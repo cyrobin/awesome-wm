@@ -32,22 +32,46 @@ shifty.config.tags = { --{{{
       position = 1,
       --layout = awful.layout.suit.fair,
       layout = awful.layout.suit.tile,
-      mwfact = 0.7,
+      mwfact = 0.6,
       exclusive = true,
       slave = true,
       screen = 1,
       spawn = config.terminal,
       icon = tagicon("dev"),
    },
-   media = {
-      position = 4,
-      mwfact = 0.2,
+   viewer = {
+      position = 5,
+      layout = awful.layout.suit.max,
+      mwfact = 0.7,
       exclusive = true,
+      max_clients = 1,
+      screen = math.max(screen.count(), 2),
+      slave=true,
+      --spawn = config.player,
+      --icon = tagicon("viewer"),
+   },
+   media = {
+      position = 8,
+      layout = awful.layout.suit.max,
+      mwfact = 0.6,
+      exclusive = true,
+      max_clients = 1,
       screen = math.max(screen.count(), 2),
       spawn = config.player,
       icon = tagicon("music"),
+      --nopopup = true,           -- don't give focus on creation
+   },
+   download = {
+      position = 9,
+      layout = awful.layout.suit.tile,
+      mwfact = 0.6,
+      exclusive = true,
+      screen = math.max(screen.count(), 2),
+      spawn = "transmission-gtk",
+      --icon = tagicon("download"),
       nopopup = true,           -- don't give focus on creation
-   }
+   },
+--		    "Transmission-gtk",
 }--}}}
 
 -- Also, see rules.lua
@@ -68,7 +92,25 @@ shifty.config.apps = {--{{{
       },
       intrusive = true,         -- Display even on exclusive tags
    },
-   --TODO Add rule for music Cmus and vlc
+   {
+      match = { "mendeleydesktop", "evince" },
+      tag = "viewer",
+   },
+   {
+      match = { "vlc" },
+      tag = "media",
+   },
+   {
+      match = { 
+        --class = {config.termclass,}, 
+      name = {"cmus .",}},
+      tag = "media",
+      slave = false,
+   },
+   {
+      match = { "transmission-gtk" },
+      tag = "download",
+   },
 }--}}}
 
 shifty.config.defaults = {--{{{
