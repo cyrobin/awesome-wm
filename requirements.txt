@@ -1,6 +1,6 @@
 # Packages needed
 
-awesome
+awesome (3.4)
 awesome-extra
 i3lock
 libnotify-bin

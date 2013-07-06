@@ -1,7 +1,8 @@
 Cyril Robin's Awesome WM configuration
 ======================================
 
-This is my [awesome](http://awesome.naquadah.org) configuration.
+This is my [awesome](http://awesome.naquadah.org) configuration. 
+It currently uses the 3.4 version.
 
 .. NOTE:: While usable, this configuration is still WIP.
 
