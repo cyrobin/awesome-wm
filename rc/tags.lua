@@ -20,7 +20,7 @@ shifty.config.tags = { --{{{
    },
    mail = {
       position = 3,
-      layout = awful.layout.suit.tile.bottom,
+      layout = awful.layout.suit.tile.left,
       mwfact = 0.7,
       exclusive = true,
       screen = math.max(screen.count(), 2),
@@ -108,7 +108,7 @@ shifty.config.apps = {--{{{
       slave = false,
    },
    {
-      match = { "transmission-gtk" },
+      match = { "transmission-gtk", "Transmission" },
       tag = "download",
    },
 }--}}}

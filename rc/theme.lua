@@ -24,10 +24,10 @@ theme.tasklist_font = "DejaVu Sans 8"
 --{{{ Main colors
 -- depends on the global settings dark/light
 if config.env == "light" then
-    theme.bg_normal     = "#ffffff99"
+    theme.bg_normal     = "#ffffffee"
     theme.bg_focus      = "#ffffff"
-    theme.bg_urgent     = "#eeeeee99"
-    theme.bg_minimize   = "#bbbbbb99"
+    theme.bg_urgent     = "#eeeeeeee"
+    theme.bg_minimize   = "#bbbbbbee"
 
     theme.fg_normal     = "#444444"
     theme.fg_focus      = "#0066AA"
@@ -35,14 +35,14 @@ if config.env == "light" then
     theme.fg_minimize   = "#000000"
 
     theme.border_width  = 4
-    theme.border_normal = "#FFFFFF00"
-    theme.border_focus  = "#00AA2200"
-    theme.border_marked = "#91231c66"
+    theme.border_normal = "#FFFFFFfa"
+    theme.border_focus  = "#00AA22FF"
+    theme.border_marked = "#91231cf6"
 else -- dark theme
-    theme.bg_normal     = "#22222299"
+    theme.bg_normal     = "#222222ee"
     theme.bg_focus      = "#222222"
-    theme.bg_urgent     = "#d02e5499"
-    theme.bg_minimize   = "#44444499"
+    theme.bg_urgent     = "#d02e54ee"
+    theme.bg_minimize   = "#444444ee"
 
     theme.fg_normal     = "#eeeeee"
     theme.fg_focus      = "#80ff00"
@@ -50,9 +50,9 @@ else -- dark theme
     theme.fg_minimize   = "#ffffff"
 
     theme.border_width  = 2
-    theme.border_normal = "#00000000"
-    theme.border_focus  = "#FF7F00EE"
-    theme.border_marked = "#91231c66"
+    theme.border_normal = "#000000fa"
+    theme.border_focus  = "#FF7F00FF"
+    theme.border_marked = "#91231cf6"
 end
 --}}}
 
