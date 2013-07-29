@@ -57,7 +57,7 @@ config.termclass = "URxvt"
 config.editor = os.getenv("EDITOR") or "vim"
 config.editor_cmd = config.terminal .. " -e " .. config.editor
 
-config.browser = "firefox"
+config.browser = "iceweasel"
 config.mail = "thunderbird"
 
 config.layouts = {
