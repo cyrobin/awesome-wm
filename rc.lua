@@ -60,7 +60,7 @@ config.editor_cmd = config.terminal .. " -e " .. config.editor
 config.browser = "iceweasel"
 config.mail = "thunderbird"
 
-config.font = "DejaVu Sans 10"
+config.font = "DejaVu Sans 12"
 
 config.layouts = {
    awful.layout.suit.tile,
