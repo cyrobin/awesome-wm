@@ -59,7 +59,8 @@ URxvt.saveLines: 5000
 !! for glyph in target_font.glyphs():
 !!   if glyph.unicode not in range(32,64):
 !!     target_font.removeGlyph(glyph)
-URxvt.font: xft:DejaVu Sans Mono-8,xft:DejaVu Sans Mono for Powerline-8
+URxvt.font: xft:DejaVu Sans Mono-12,xft:DejaVu Sans Mono for Powerline-12
+URxvt.boldFont: xft:DejaVu Sans Mono-12:bold,xft:DejaVu Sans Mono for Powerline-12:bold
 URxvt.letterSpace: -1
 
 URxvt.iso14755: False
