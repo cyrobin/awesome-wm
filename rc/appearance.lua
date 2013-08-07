@@ -59,5 +59,8 @@ if wid then
 end
 --}}}
 
+
+awesome.font = config.font
+
 -- Set cursor theme
 os.execute("xsetroot -cursor_name left_ptr")
