@@ -296,37 +296,37 @@ vicious.register(fswidget, vicious.widgets.fs,
 
 --{{{ Applications menu
 -- largely based on awesome freedesktop (git submodule)
-require('freedesktop/freedesktop.utils')
-freedesktop.utils.terminal = config.terminal
-freedesktop.utils.icon_theme = {'mate','Mint-X-Dark','gnome'} -- look inside /usr/share/icons/, default: nil (don't use icon theme)
-require('freedesktop/freedesktop.menu')
-local debianMenu = loadrc("debian-menu") -- Load the debian menu
-
-menu_items = freedesktop.menu.new()
-myawesomemenu = {
-   { "manual", config.terminal .. " -e man awesome", freedesktop.utils.lookup_icon({ icon = 'help' }) },
-   { "edit config", config.editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua", freedesktop.utils.lookup_icon({ icon = 'package_settings' }) },
-   { "restart", awesome.restart, freedesktop.utils.lookup_icon({ icon = 'gtk-refresh' }) },
-   { "quit", awesome.quit, freedesktop.utils.lookup_icon({ icon = 'gtk-quit' }) }
-}
-
-mysystemmenu = {
-   { "shutdown", awful.util.getdir("config") .. "/bin/shutdown.sh" },
-   { "reboot", awful.util.getdir("config") .. "/bin/reboot.sh" },
-   { "suspend", awful.util.getdir("config") .. "/bin/suspend.sh" },
-   { "hibernate", awful.util.getdir("config") .. "/bin/hibernate.sh" }
-}
-
-table.insert(menu_items, { "awesome", myawesomemenu, beautiful.awesome_icon })
-table.insert(menu_items, { "open terminal", config.terminal, freedesktop.utils.lookup_icon({icon = 'terminal'}) })
-table.insert(menu_items, { "Debian", debian.menu.Debian_menu.Debian, freedesktop.utils.lookup_icon({ icon = 'debian-logo' }) })
-table.insert(menu_items, { "system", mysystemmenu})
-
-mymainmenu = awful.menu.new({ items = menu_items, width = 150 })
-
-mylauncher = awful.widget.launcher({ 
-        image = image(beautiful.icons .. "/widgets/menu.png"),
-        menu = mymainmenu })
+--require('freedesktop/freedesktop.utils')
+--freedesktop.utils.terminal = config.terminal
+--freedesktop.utils.icon_theme = {'mate','Mint-X-Dark','gnome'} -- look inside /usr/share/icons/, default: nil (don't use icon theme)
+--require('freedesktop/freedesktop.menu')
+--local debianMenu = loadrc("debian-menu") -- Load the debian menu
+--
+--menu_items = freedesktop.menu.new()
+--myawesomemenu = {
+--   { "manual", config.terminal .. " -e man awesome", freedesktop.utils.lookup_icon({ icon = 'help' }) },
+--   { "edit config", config.editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua", freedesktop.utils.lookup_icon({ icon = 'package_settings' }) },
+--   { "restart", awesome.restart, freedesktop.utils.lookup_icon({ icon = 'gtk-refresh' }) },
+--   { "quit", awesome.quit, freedesktop.utils.lookup_icon({ icon = 'gtk-quit' }) }
+--}
+--
+--mysystemmenu = {
+--   { "shutdown", awful.util.getdir("config") .. "/bin/shutdown.sh" },
+--   { "reboot", awful.util.getdir("config") .. "/bin/reboot.sh" },
+--   { "suspend", awful.util.getdir("config") .. "/bin/suspend.sh" },
+--   { "hibernate", awful.util.getdir("config") .. "/bin/hibernate.sh" }
+--}
+--
+--table.insert(menu_items, { "awesome", myawesomemenu, beautiful.awesome_icon })
+--table.insert(menu_items, { "open terminal", config.terminal, freedesktop.utils.lookup_icon({icon = 'terminal'}) })
+--table.insert(menu_items, { "Debian", debian.menu.Debian_menu.Debian, freedesktop.utils.lookup_icon({ icon = 'debian-logo' }) })
+--table.insert(menu_items, { "system", mysystemmenu})
+--
+--mymainmenu = awful.menu.new({ items = menu_items, width = 150 })
+--
+--mylauncher = awful.widget.launcher({ 
+--        image = image(beautiful.icons .. "/widgets/menu.png"),
+--        menu = mymainmenu })
 
 --}}}
 
@@ -396,8 +396,8 @@ cmus_timer:start()
 --{{{ Keyboard map indicator and changer
 kbdcfg = {}
 kbdcfg.cmd = "setxkbmap"
-kbdcfg.layout = { "us", "fr" } -- also : "dvorak"
-kbdcfg.current = 2  -- fr is our default layout
+kbdcfg.layout = config.keyboards
+kbdcfg.current = 1  -- the first one is the default layout
 kbdcfg.widget = widget({ type = "textbox", align = "right" })
 kbdcfg.widget.text = " " .. kbdcfg.layout[kbdcfg.current] .. " "
 kbdcfg.switch = function ()
