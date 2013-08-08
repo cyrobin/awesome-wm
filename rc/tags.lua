@@ -66,12 +66,20 @@ shifty.config.tags = { --{{{
       layout = awful.layout.suit.tile,
       mwfact = 0.6,
       exclusive = true,
-      screen = math.max(screen.count(), 2),
+      screen = 1,
       spawn = "transmission-gtk",
       --icon = tagicon("download"),
       nopopup = true,           -- don't give focus on creation
    },
---		    "Transmission-gtk",
+  wicd = {
+      position = 9,
+      layout = awful.layout.suit.tile,
+      mwfact = 0.6,
+      exclusive = true,
+      screen = 1,
+      spawn = "wicd-client",
+      nopopup = true,           -- don't give focus on creation
+   },
 }--}}}
 
 -- Also, see rules.lua
@@ -110,6 +118,10 @@ shifty.config.apps = {--{{{
    {
       match = { "transmission-gtk", "Transmission" },
       tag = "download",
+   },
+   {
+      match = { "wicd-client", "Wicd Network Manager" },
+      tag = "wicd",
    },
 }--}}}
 

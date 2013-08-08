@@ -14,14 +14,9 @@ pulseaudio
 numlockx
 rxvt-unicode-256color
 xbacklight
-NetworkManager
-nm-applet
 dropbox
 cmus
-
-# Former requirements - not used anymore
-(xautolock)
-(pidgin)
+wicd
 
 # icons
 --fvwm
