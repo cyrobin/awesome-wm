@@ -71,15 +71,15 @@ shifty.config.tags = { --{{{
       --icon = tagicon("download"),
       nopopup = true,           -- don't give focus on creation
    },
-  wicd = {
-      position = 9,
-      layout = awful.layout.suit.tile,
-      mwfact = 0.6,
-      exclusive = true,
-      screen = 1,
-      spawn = "wicd-client",
-      nopopup = true,           -- don't give focus on creation
-   },
+   --wicd = {
+   --   position = 9,
+   --   layout = awful.layout.suit.tile,
+   --   mwfact = 0.6,
+   --   exclusive = true,
+   --   screen = 1,
+   --   spawn = "wicd-client",
+   --   nopopup = true,           -- don't give focus on creation
+   --},
 }--}}}
 
 -- Also, see rules.lua
@@ -90,7 +90,7 @@ shifty.config.apps = {--{{{
    },
    {
       --match = { role = { "mail", "conversation", "buddy_list" } },
-      match = { "Thunderbird", "mutt" },
+      match = { "Thunderbird", "mutt", "Evolution", "Icedove" },
       tag = "mail",
    },
    {

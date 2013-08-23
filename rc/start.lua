@@ -54,10 +54,10 @@ xrun("polkit-gnome-authentication-agent-1",
 xrun("Dropbox", "dropbox start")
 
 if config.hostname == "alfred-laas" then
-   --xrun("Conky", "conky")
    xrun("Conky", "sh /home/crobin/.conky/conky_start & ") -- specific script launching several conky instances
    xrun("Bluetooth Applet", "bluetooth-applet")
-   xrun("Wicd", "wicd") -- run the deamon
-   xrun("Wicd Applet", "pkill wicd-client ; wicd-client") -- run the deamon/applet
+   xrun("Network Manager Applet","nm-applet")
+   --xrun("Wicd", "wicd") -- run the deamon
+   --xrun("Wicd Applet", "pkill wicd-client ; wicd-client") -- run the deamon/applet
 end
 --}}}
