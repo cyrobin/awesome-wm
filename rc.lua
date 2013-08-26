@@ -75,6 +75,9 @@ config.layouts = {
 -- The first one is the default one.
 config.keyboards = { "fr bepo", "us", "fr" } -- also : "dvorak"
 
+-- Choose between available keybindings
+--config.bindings = "qwerty"
+config.bindings = "bepo"
 
 
 --  Choose between 'light' or 'dark', to adapt colors and display

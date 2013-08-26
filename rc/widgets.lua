@@ -528,9 +528,6 @@ end
 --{{{ key bindings for widgets
 config.keys.global = awful.util.table.join(
    config.keys.global,
-   -- Promt a command line
-   awful.key({ modkey }, "r", function () promptbox[mouse.screen]:run() end,
-	     "Prompt for a command"),
    -- CMUS control : multimedia key bindings
    awful.key({ }, "XF86AudioPlay",        function() cmus_cmd("PlayPause") end),
    awful.key({ }, "XF86AudioPause",       function() cmus_cmd("PlayPause") end),
@@ -538,14 +535,32 @@ config.keys.global = awful.util.table.join(
    awful.key({ }, "XF86AudioNext",        function() cmus_cmd("Next") end),
    awful.key({ }, "XF86AudioPrev",        function() cmus_cmd("Previous") end),
    -- CMUS control : Without multimedia keys
-   awful.key({ "Control", }, "Down", function () cmus_cmd("play_pause") end,"Cmus play/pause"),
-   awful.key({ "Control", }, "Up", function () cmus_cmd("stop") end, "Cmus stop"),
-   awful.key({ "Control", }, "Right", function () cmus_cmd("next") end, "Cmus next"),
-   awful.key({ "Control", }, "Left", function () cmus_cmd("previous") end, "Cmus prev"),
+   awful.key({ "Control", }, "Down", function () cmus_cmd("play_pause") end,                    "Cmus play/pause"),
+   awful.key({ "Control", }, "Up", function () cmus_cmd("stop") end,                            "Cmus stop"),
+   awful.key({ "Control", }, "Right", function () cmus_cmd("next") end,                         "Cmus next"),
+   awful.key({ "Control", }, "Left", function () cmus_cmd("previous") end,                      "Cmus prev"),
 
    -- Switch the keyboard layout
-   awful.key({ modkey  }, "e" , function () kbdcfg.switch() end, "Switch Keyboard")
+   awful.key({ modkey  }, "e" , function () kbdcfg.switch() end,                                "Switch Keyboard")
    )
+--}}}
+
+--{{{ Bepo specific configuration
+if config.bindings == "bepo" then
+
+config.keys.global = awful.util.table.join(
+   config.keys.global,
+   awful.key({ modkey }, "l", function () promptbox[mouse.screen]:run() end,                    "Prompt for a command line")
+)
+--}}}
+--{{{ Qwerty / Azerty specific configuration
+else
+
+config.keys.global = awful.util.table.join(
+   config.keys.global,
+   awful.key({ modkey }, "r", function () promptbox[mouse.screen]:run() end,                    "Prompt for a command line")
+)
+end
 --}}}
 
 config.taglist = taglist
