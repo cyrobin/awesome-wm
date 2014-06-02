@@ -110,13 +110,13 @@ config.keys.global = awful.util.table.join(
 
    keydoc.group("Misc"),
    awful.key({ modkey,           }, "Return", function () awful.util.spawn(config.terminal) end,        "Spawn a terminal"),
-   awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end,            "Spawn the menu"),
+   --awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end,            "Spawn the menu"),
    awful.key({                   }, "Print", screenshot,                                                "Print screenshot"),
    awful.key({ modkey,           }, "q", awesome.quit,                                                  "Quit awesome"),
 
    -- System key bindings
-   awful.key({ modkey, "Shift"   }, "q", 
-        function () awful.util.spawn( awful.util.getdir("config") .. "/bin/shutdown.sh") end,           "Shutdown System"),
+   --awful.key({ modkey, "Shift"   }, "q", 
+        --function () awful.util.spawn( awful.util.getdir("config") .. "/bin/shutdown.sh") end,           "Shutdown System"),
    --{ "shutdown", awful.util.getdir("config") .. "/bin/shutdown.sh" },
    --{ "reboot", awful.util.getdir("config") .. "/bin/reboot.sh" },
    --{ "suspend", awful.util.getdir("config") .. "/bin/suspend.sh" },
