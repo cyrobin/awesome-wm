@@ -74,23 +74,22 @@ config.layouts = {
    awful.layout.suit.tile.left,
    awful.layout.suit.tile.bottom,
    awful.layout.suit.fair,
+   awful.layout.suit.floating,
    awful.layout.suit.max,
-   --awful.layout.suit.floating,
 }
 
 -- Available keyboard layouts
 -- The first one is the default one.
-config.keyboards = { "fr bepo", "us", "fr" } -- also : "dvorak"
+config.keyboards = { "fr bepo", "fr", "us" } -- also : "dvorak"
+--}}}
 
 -- Choose between available keybindings
 --config.bindings = "qwerty"
 config.bindings = "bepo"
 
-
---  Choose between 'light' or 'dark', to adapt colors and display
+ --Choose between 'light' or 'dark', to adapt colors and display
 config.env = "dark"
 --config.env = "light"
---}}}
 
 --{{{ Load remaining modules
 loadrc("xrun")			-- xrun function
