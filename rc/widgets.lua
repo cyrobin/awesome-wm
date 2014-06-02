@@ -2,6 +2,8 @@
 
 vicious = require("vicious")
 local icons = loadrc("icons", "lib/icons")
+--load module for key bindings auto-doc
+local keydoc = loadrc("keydoc", "lib/keydoc")
 
 --{{{ Separators
 local sepopen = widget({ type = "imagebox" })
@@ -404,6 +406,7 @@ kbdcfg.switch = function ()
    kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
    local t = " " .. kbdcfg.layout[kbdcfg.current] .. " "
    kbdcfg.widget.text = t
+   t = " -layout" .. t
    os.execute( kbdcfg.cmd .. t )
 end
 
@@ -524,11 +527,12 @@ for s = 1, screen.count() do
 	layout = awful.widget.layout.horizontal.rightleft }
 end
 --}}}
-
+--
 --{{{ key bindings for widgets
 config.keys.global = awful.util.table.join(
    config.keys.global,
-   -- CMUS control : multimedia key bindings
+   keydoc.group("Widgets"),
+  -- CMUS control : multimedia key bindings
    awful.key({ }, "XF86AudioPlay",        function() cmus_cmd("PlayPause") end),
    awful.key({ }, "XF86AudioPause",       function() cmus_cmd("PlayPause") end),
    awful.key({ }, "XF86AudioStop",        function() cmus_cmd("Stop") end),
