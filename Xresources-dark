@@ -50,7 +50,7 @@ URxvt.scrollTtyKeypress: True
 URxvt.scrollWithBuffer: True
 URxvt.jumpScroll: True
 URxvt.skipScroll: True
-URxvt.saveLines: 5000
+URxvt.saveLines: 65535
 
 !! To get this font, use the font patcher from https://github.com/Lokaltog/vim-powerline
 !! To get a smaller version of this font, use:
