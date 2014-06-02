@@ -57,8 +57,15 @@ config.termclass = "URxvt"
 config.editor = os.getenv("EDITOR") or "vim"
 config.editor_cmd = config.terminal .. " -e " .. config.editor
 
-config.browser = "iceweasel"
-config.mail = "thunderbird"
+--config.browser = "iceweasel"
+config.browser = "firefox"
+--config.mail = "thunderbird"
+--config.mail = "geary"
+--config.mail = config.terminal .. " -e mutt -R"
+config.mail = config.terminal .. " -e mutt -F ~/.mutt/muttrc_laas"
+config.files = "nautilus"
+
+config.player = config.terminal .. " -e cmus"
 
 config.font = "DejaVu Sans 12"
 
