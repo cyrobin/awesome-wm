@@ -85,7 +85,15 @@ config.keyboards = { "fr bepo", "fr", "us" } -- also : "dvorak"
 
 -- Choose between available keybindings
 --config.bindings = "qwerty"
-config.bindings = "bepo"
+--config.bindings = "bepo"
+--{{{ Decide according to hostname configuration
+-- default is qwerty
+if config.hostname == "alfred-laas" then
+    config.bindings = "bepo"
+else
+    config.bindings = "qwerty"
+end
+--}}}
 
  --Choose between 'light' or 'dark', to adapt colors and display
 config.env = "dark"
