@@ -20,6 +20,15 @@ local function change(what)
    local vol, mute = out:match("([%d]+)%%.*%[([%l]*)")
    if not mute or not vol then return end
 
+   -- fix for amixer with unmuting
+   -- see http://askubuntu.com/questions/65764/how-do-i-toggle-sound-with-amixer
+   if mute ~= "off" then
+      os.execute("amixer -q sset Master unmute", false)
+      os.execute("amixer -q sset Headphone unmute", false)
+      os.execute("amixer -q sset PCM unmute", false)
+   end
+   -- end fix
+
    vol = tonumber(vol)
    local icon = "high"
    if mute ~= "on" or vol == 0 then
