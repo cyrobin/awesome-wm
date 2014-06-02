@@ -302,7 +302,6 @@ vicious.register(fswidget, vicious.widgets.fs,
 --freedesktop.utils.terminal = config.terminal
 --freedesktop.utils.icon_theme = {'mate','Mint-X-Dark','gnome'} -- look inside /usr/share/icons/, default: nil (don't use icon theme)
 --require('freedesktop/freedesktop.menu')
---local debianMenu = loadrc("debian-menu") -- Load the debian menu
 --
 --menu_items = freedesktop.menu.new()
 --myawesomemenu = {
@@ -314,7 +313,6 @@ vicious.register(fswidget, vicious.widgets.fs,
 --
 --table.insert(menu_items, { "awesome", myawesomemenu, beautiful.awesome_icon })
 --table.insert(menu_items, { "open terminal", config.terminal, freedesktop.utils.lookup_icon({icon = 'terminal'}) })
---table.insert(menu_items, { "Debian", debian.menu.Debian_menu.Debian, freedesktop.utils.lookup_icon({ icon = 'debian-logo' }) })
 --
 --mymainmenu = awful.menu.new({ items = menu_items, width = 150 })
 --
