@@ -10,3 +10,7 @@ TODO : add dropbox or HubiC
 
 TODO : embed all icons (don't search for them in the system)
 
+TODO : merge rules/tags (probably remove rules and merge it in tags)
+
+TODO : remove menu entirely (including freedesktopmenu submodule)
+
