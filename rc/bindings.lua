@@ -150,8 +150,6 @@ config.keys.client = awful.util.table.join(
    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle,                             "Toggle floating"),
    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,        "Switch with master window"),
 
-   awful.key({ modkey,           }, "i",      dbg,                                                      "Get client-related information"),
-
    awful.key({ modkey,           }, "m",
 	     function (c)
 		c.maximized_horizontal = not c.maximized_horizontal

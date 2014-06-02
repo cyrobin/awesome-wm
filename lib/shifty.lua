@@ -20,7 +20,6 @@ local awful = require("awful")
 local pairs = pairs
 local io = io
 local tonumber = tonumber
-local dbg= dbg
 local capi = {
     client = client,
     tag = tag,

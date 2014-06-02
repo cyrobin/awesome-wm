@@ -102,7 +102,6 @@ config.env = "dark"
 --{{{ Load remaining modules
 loadrc("xrun")			-- xrun function
 loadrc("appearance")	-- theme and appearance settings
-loadrc("debug")			-- debugging primitive `dbg()`
 loadrc("start")			-- programs to run on start
 loadrc("bindings")		-- keybindings
 loadrc("widgets")		-- widgets configuration
