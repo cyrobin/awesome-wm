@@ -8,6 +8,17 @@ local tagicon = function(icon) --{{{
 end--}}}
 
 shifty.config.tags = { --{{{
+   xterm = {
+      position = 1,
+      layout = awful.layout.suit.fair,
+      --layout = awful.layout.suit.tile,
+      mwfact = 0.6,
+      exclusive = true,
+      slave = true,
+      screen = 1,
+      spawn = config.terminal,
+      icon = tagicon("dev"),
+   },
    www = {
       position = 2,
       layout = awful.layout.suit.tile.bottom,
@@ -28,16 +39,15 @@ shifty.config.tags = { --{{{
       slave= true,
       icon = tagicon("im")
    },
-   xterm = {
-      position = 1,
-      --layout = awful.layout.suit.fair,
-      layout = awful.layout.suit.tile,
-      mwfact = 0.6,
-      exclusive = true,
-      slave = true,
-      screen = 1,
-      spawn = config.terminal,
-      icon = tagicon("dev"),
+   chat = {
+      position = 3,
+      layout = awful.layout.suit.tile.left,
+      mwfact = 0.7,
+      --exclusive = true,
+      screen = math.max(screen.count(), 2),
+      --spawn = config.chat,
+      slave= true,
+      icon = tagicon("im")
    },
    viewer = {
       position = 5,
@@ -49,6 +59,14 @@ shifty.config.tags = { --{{{
       slave=true,
       --spawn = config.player,
       --icon = tagicon("viewer"),
+   },
+   misc = {
+      position = 7,
+      layout = awful.layout.suit.floating,
+      --mwfact = 0.6,
+      slave = true,
+      screen = math.max(screen.count(), 2),
+      icon = tagicon("dev"),
    },
    media = {
       position = 8,
@@ -71,15 +89,6 @@ shifty.config.tags = { --{{{
       --icon = tagicon("download"),
       nopopup = true,           -- don't give focus on creation
    },
-   --wicd = {
-   --   position = 9,
-   --   layout = awful.layout.suit.tile,
-   --   mwfact = 0.6,
-   --   exclusive = true,
-   --   screen = 1,
-   --   spawn = "wicd-client",
-   --   nopopup = true,           -- don't give focus on creation
-   --},
 }--}}}
 
 -- Also, see rules.lua
@@ -90,8 +99,12 @@ shifty.config.apps = {--{{{
    },
    {
       --match = { role = { "mail", "conversation", "buddy_list" } },
-      match = { "Thunderbird", "mutt", "Evolution", "Icedove" },
+      match = { "Thunderbird", "mutt", "Geary", "Evolution", "Icedove" },
       tag = "mail",
+   },
+   {
+      match = { "pidgin","Buddy List", "buddy_list" },
+      tag = "chat",
    },
    {
       match = { config.termclass },
@@ -105,12 +118,12 @@ shifty.config.apps = {--{{{
       tag = "viewer",
    },
    {
-      match = { "vlc" },
+      match = { "vlc", "Blender" },
       tag = "media",
    },
    {
-      match = { 
-        --class = {config.termclass,}, 
+      match = {
+        --class = {config.termclass,},
       name = {"cmus .",}},
       tag = "media",
       slave = false,
@@ -118,10 +131,6 @@ shifty.config.apps = {--{{{
    {
       match = { "transmission-gtk", "Transmission" },
       tag = "download",
-   },
-   {
-      match = { "wicd-client", "Wicd Network Manager" },
-      tag = "wicd",
    },
 }--}}}
 
