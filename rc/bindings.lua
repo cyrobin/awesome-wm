@@ -110,7 +110,6 @@ config.keys.global = awful.util.table.join(
 
    keydoc.group("Misc"),
    awful.key({ modkey,           }, "Return", function () awful.util.spawn(config.terminal) end,        "Spawn a terminal"),
-   --awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end,            "Spawn the menu"),
    awful.key({                   }, "Print", screenshot,                                                "Print screenshot"),
    awful.key({ modkey,           }, "q", awesome.quit,                                                  "Quit awesome"),
 
