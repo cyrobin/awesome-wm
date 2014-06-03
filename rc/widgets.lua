@@ -306,7 +306,7 @@ wifiicon.image = image(beautiful.icons .. "/widgets/wifi.png")
 local wifitooltip= awful.tooltip({})
 wifitooltip:add_to_object(wifiwidget)
 
-vicious.register(wifiwidget, vicious.widgets.wifi, 
+vicious.register(wifiwidget, vicious.widgets.wifi,
     function(widget, args)
         local tooltip = ("<b>mode</b> %s <b>chan</b> %s <b>rate</b> %s Mb/s"):format(
                         args["{mode}"], args["{chan}"], args["{rate}"])
@@ -316,7 +316,7 @@ vicious.register(wifiwidget, vicious.widgets.wifi,
         end
         wifitooltip:set_text(tooltip)
         return ("%s: %.1f%%"):format(args["{ssid}"], quality)
-    end, 
+    end,
     7, "wlan0")
 
 wifiicon:buttons( wifiwidget:buttons(awful.util.table.join(
@@ -334,17 +334,9 @@ wifiicon:buttons( wifiwidget:buttons(awful.util.table.join(
         else
         end
     end),
-    awful.button({ "Shift" }, 1,  -- left click
-    function ()
-    -- restart-auto-wireless is just a script of mine,
-    -- which just restart netcfg
-    -- TODO : change this
-    --    local wpa_cmd = "sudo restart-auto-wireless && notify-send 'wpa_actiond' 'restarted' || notify-send 'wpa_actiond' 'error on restart'"
-    --    awful.util.spawn_with_shell(wpa_cmd)
-    end),
     awful.button({ }, 3,  -- right click
-    function ()  
-        vicious.force{wifiwidget} 
+    function ()
+        vicious.force{wifiwidget}
     end)
     )))
 --}}}
@@ -384,6 +376,9 @@ kbdcfg.widget:buttons(awful.util.table.join(
 -- (especially, allows to display bluetooth and networkmanager applets)
 local systray = widget({ type = "systray" })
 
+
+
+-----------------------------------------------------------------------
 --{{{ Wibox initialisation
 local wibox     = {}
 local promptbox = {}
@@ -419,17 +414,19 @@ tasklist.buttons = awful.util.table.join(
         end))
 
 for s = 1, screen.count() do
+
     promptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
     layoutbox[s] = awful.widget.layoutbox(s)
     tasklist[s]  = awful.widget.tasklist(
-       function(c)
-	  local title, color, _, icon = awful.widget.tasklist.label.currenttags(c, s)
-	  return title, color, nil, icon
-       end, tasklist.buttons)
+    function(c)
+      local title, color, _, icon = awful.widget.tasklist.label.currenttags(c, s)
+      return title, color, nil, icon
+    end, tasklist.buttons)
 
     -- Create the taglist
     taglist[s] = awful.widget.taglist.new(s,
             awful.widget.taglist.label.all, taglist.buttons)
+
     -- Create the wibox
     wibox[s] = awful.wibox({ screen = s,
 			     fg = beautiful.fg_normal,
@@ -437,6 +434,7 @@ for s = 1, screen.count() do
 			     position = "top",
 			     height = 16,
     })
+
     -- Add widgets to the wibox -- n if the chosen screen
     local on = function(n, what)
        if s == n or n > screen.count() then return what end
@@ -444,51 +442,49 @@ for s = 1, screen.count() do
     end
 
     wibox[s].widgets = {
-        {
-       mylauncher,
-	   screen.count() > 1 and sepopen or "",
-	   layoutbox[s],
-	   screen.count() > 1 and spacer or "",
-	   taglist[s],
-	   screen.count() > 1 and sepclose or "",
-	   promptbox[s],
-	   layout = awful.widget.layout.horizontal.leftright
-	},
-	-- Systray
-	on(1, systray),
-	-- Date + Calendar
-	sepclose, datewidget, spacer,
-	-- Keyboard layout
-    kbdcfg.widget, spacer,
-	-- Volume
-	on(2, volwidget), screen.count() > 1 and on(2, volicon) or "", on(2, spacer),
+    {
+      mylauncher,   screen.count() > 1 and sepopen  or "",
+      layoutbox[s], screen.count() > 1 and spacer   or "",
+      taglist[s],   screen.count() > 1 and sepclose or "",
+      promptbox[s],
+      layout = awful.widget.layout.horizontal.leftright
+    },
+
+    -- Date + Calendar (on all screen)
+    sepclose, datewidget, spacer,
+    -- Systray
+    on(1, systray), on(1, spacer),
+    -- Keyboard layout
+    on(1, kbdcfg.widget), on(1, spacer),
+    -- Volume
+    on(1, volwidget), config.size == "Large" and on(1, volicon) or "", on(1, spacer),
     -- Battery
-	on(2, batwidget.widget),
-	on(2, batwidget.widget ~= "" and baticon or ""),
-	on(2, batwidget.widget ~= "" and spacer or ""),
+    on(1, batwidget.widget),
+    on(1, batwidget.widget ~= "" and baticon or ""),
+    on(1, batwidget.widget ~= "" and spacer or ""),
     -- File system storage
-	on(2, fswidget),
-    -- net graph -- not displayed if only one screen
-	screen.count() > 1 and on(2, sepopen) or on(2, spacer),
-	screen.count() > 1 and on(1, netgraph.widget) or "",
-    -- net current stat
-	on(1, netdownicon), on(1, netdown),
-	on(1, netupicon), on(1, netup), on(1, spacer),
-	-- wifi
-	on(1, wifiwidget), on(1, wifiicon), on(1, spacer),
-    -- mem graph -- not displayed if only one screen
-	screen.count() > 1 and on(1, memgraph.widget) or "",
-    -- memory usage
-	on(1, memwidget), on(1, memicon), on(1, spacer),
-    -- cpu graph -- not displayed if only one screen
-	screen.count() > 1 and on(1, cpugraph.widget) or "",
-	-- cpu usage
-	on(1, cpuwidget), on(1, cpuicon), on(1, sepopen),
---	-- cmus
+    on(1, fswidget), on(1, spacer),
+
+    -- net graph and current state
+    screen.count() > 1 and on(2, netgraph.widget) or "",
+    screen.count() > 1 and on(2, netdownicon), on(2, netdown),
+    screen.count() > 1 and on(2, netupicon), on(2, netup), on(2, spacer),
+    -- wifi
+    screen.count() > 1 and on(2, wifiwidget), on(2, wifiicon), on(2, sepopen),
+
+    -- memory graph and usage
+    config.size == "Large" and on(1, memgraph.widget) or "",
+    on(1, memwidget), on(1, memicon), on(1, spacer),
+    -- cpu graph and usage
+    config.size == "Large" and on(1, cpugraph.widget) or "",
+    on(1, cpuwidget), on(1, cpuicon), on(1, sepopen),
+
+    -- cmus
     on(2,sepclose),on(2, cmus_widget), on(2, cmusicon), on(2, sepopen),
-	-- Other
-	tasklist[s],
-	layout = awful.widget.layout.horizontal.rightleft }
+
+    -- Other
+    tasklist[s],
+    layout = awful.widget.layout.horizontal.rightleft }
 end
 --}}}
 --

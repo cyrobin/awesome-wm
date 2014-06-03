@@ -97,7 +97,9 @@ end
 -- font size
 if config.hostname == "alfred-laas" then
     config.font = "DejaVu Sans 12"
+    config.size = "Large"
 else
+    config.size = "Small"
     config.font = "DejaVu Sans 8"
 end
 
