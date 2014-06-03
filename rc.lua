@@ -67,8 +67,6 @@ config.files = "nautilus"
 
 config.player = config.terminal .. " -e cmus"
 
-config.font = "DejaVu Sans 12"
-
 config.layouts = {
    awful.layout.suit.tile,
    awful.layout.suit.tile.left,
@@ -95,13 +93,25 @@ else
 end
 --}}}
 
+--{{{ display
+-- font size
+if config.hostname == "alfred-laas" then
+    config.font = "DejaVu Sans 12"
+else
+    config.font = "DejaVu Sans 8"
+end
+
  --Choose between 'light' or 'dark', to adapt colors and display
 config.env = "dark"
 --config.env = "light"
 
+-- init
+beautiful.init(awful.util.getdir("config") .. "/rc/theme.lua")
+awesome.font = config.font
+--}}}
+
 --{{{ Load remaining modules
 loadrc("xrun")			-- xrun function
-loadrc("appearance")	-- theme and appearance settings
 loadrc("start")			-- programs to run on start
 loadrc("bindings")		-- keybindings
 loadrc("widgets")		-- widgets configuration

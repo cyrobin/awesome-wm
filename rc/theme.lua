@@ -17,8 +17,8 @@ theme = {}
 theme.icons = icons
 --theme.wallpaper_cmd = { "/bin/true" }
 theme.wallpaper_cmd = { "awsetbg " .. background_img }
-theme.font = "Terminus 8"
-theme.tasklist_font = "DejaVu Sans 8"
+theme.font = config.font
+theme.tasklist_font = config.font
 --}}}
 
 --{{{ Main colors
@@ -105,56 +105,9 @@ theme.menu_width  = "100"
 -- }}}
 
 -- {{{ Other Icons
-
--- {{{ Misc
-theme.awesome_icon           = "/usr/share/awesome/themes/zenburn/awesome-icon.png"
-theme.menu_submenu_icon      = "/usr/share/awesome/themes/default/submenu.png"
-theme.tasklist_floating_icon = "/usr/share/awesome/themes/default/tasklist/floatingw.png"
+theme.awesome_icon           = icons .. "/widgets/menu.png"
+theme.menu_submenu_icon      = icons .. "/widgets/submenu.png"
+theme.tasklist_floating_icon = icons .. "/widgets/floatingw.png"
 -- }}}
 
--- }}}
--------------------
----- {{{ Icons
-
----- {{{ Layout
---theme.layout_tile       = "/usr/share/awesome/themes/zenburn/layouts/tile.png"
---theme.layout_tileleft   = "/usr/share/awesome/themes/zenburn/layouts/tileleft.png"
---theme.layout_tilebottom = "/usr/share/awesome/themes/zenburn/layouts/tilebottom.png"
---theme.layout_tiletop    = "/usr/share/awesome/themes/zenburn/layouts/tiletop.png"
---theme.layout_fairv      = "/usr/share/awesome/themes/zenburn/layouts/fairv.png"
---theme.layout_fairh      = "/usr/share/awesome/themes/zenburn/layouts/fairh.png"
---theme.layout_spiral     = "/usr/share/awesome/themes/zenburn/layouts/spiral.png"
---theme.layout_dwindle    = "/usr/share/awesome/themes/zenburn/layouts/dwindle.png"
---theme.layout_max        = "/usr/share/awesome/themes/zenburn/layouts/max.png"
---theme.layout_fullscreen = "/usr/share/awesome/themes/zenburn/layouts/fullscreen.png"
---theme.layout_magnifier  = "/usr/share/awesome/themes/zenburn/layouts/magnifier.png"
---theme.layout_floating   = "/usr/share/awesome/themes/zenburn/layouts/floating.png"
----- }}}
---
----- {{{ Titlebar
---theme.titlebar_close_button_focus  = "/usr/share/awesome/themes/zenburn/titlebar/close_focus.png"
---theme.titlebar_close_button_normal = "/usr/share/awesome/themes/zenburn/titlebar/close_normal.png"
---
---theme.titlebar_ontop_button_focus_active  = "/usr/share/awesome/themes/zenburn/titlebar/ontop_focus_active.png"
---theme.titlebar_ontop_button_normal_active = "/usr/share/awesome/themes/zenburn/titlebar/ontop_normal_active.png"
---theme.titlebar_ontop_button_focus_inactive  = "/usr/share/awesome/themes/zenburn/titlebar/ontop_focus_inactive.png"
---theme.titlebar_ontop_button_normal_inactive = "/usr/share/awesome/themes/zenburn/titlebar/ontop_normal_inactive.png"
---
---theme.titlebar_sticky_button_focus_active  = "/usr/share/awesome/themes/zenburn/titlebar/sticky_focus_active.png"
---theme.titlebar_sticky_button_normal_active = "/usr/share/awesome/themes/zenburn/titlebar/sticky_normal_active.png"
---theme.titlebar_sticky_button_focus_inactive  = "/usr/share/awesome/themes/zenburn/titlebar/sticky_focus_inactive.png"
---theme.titlebar_sticky_button_normal_inactive = "/usr/share/awesome/themes/zenburn/titlebar/sticky_normal_inactive.png"
---
---theme.titlebar_floating_button_focus_active  = "/usr/share/awesome/themes/zenburn/titlebar/floating_focus_active.png"
---theme.titlebar_floating_button_normal_active = "/usr/share/awesome/themes/zenburn/titlebar/floating_normal_active.png"
---theme.titlebar_floating_button_focus_inactive  = "/usr/share/awesome/themes/zenburn/titlebar/floating_focus_inactive.png"
---theme.titlebar_floating_button_normal_inactive = "/usr/share/awesome/themes/zenburn/titlebar/floating_normal_inactive.png"
---
---theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/zenburn/titlebar/maximized_focus_active.png"
---theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/zenburn/titlebar/maximized_normal_active.png"
---theme.titlebar_maximized_button_focus_inactive  = "/usr/share/awesome/themes/zenburn/titlebar/maximized_focus_inactive.png"
---theme.titlebar_maximized_button_normal_inactive = "/usr/share/awesome/themes/zenburn/titlebar/maximized_normal_inactive.png"
----- }}}
----- }}}
---
 return theme
