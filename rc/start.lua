@@ -53,11 +53,8 @@ os.execute(table.concat(execute, ";"))
 --xrun("pidgin", "pidgin -n")
 xrun("Dropbox", "dropbox start")
 
-if config.hostname == "alfred-laas" then
-   --xrun("Conky", "sh /home/crobin/.conky/conky_start & ") -- specific script launching several conky instances
+if config.laptop == true then
    xrun("Bluetooth Applet", "bluetooth-applet")
    xrun("Network Manager Applet","pkill nm-applet ; nm-applet")
-   --xrun("Wicd", "wicd") -- run the deamon
-   --xrun("Wicd Applet", "pkill wicd-client ; wicd-client") -- run the deamon/applet
 end
 --}}}
