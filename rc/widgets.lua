@@ -443,9 +443,9 @@ for s = 1, screen.count() do
 
     wibox[s].widgets = {
     {
-      mylauncher,   screen.count() > 1 and sepopen  or "",
-      layoutbox[s], screen.count() > 1 and spacer   or "",
-      taglist[s],   screen.count() > 1 and sepclose or "",
+      mylauncher,   screen.count() > 1 and sepopen,
+      layoutbox[s], screen.count() > 1 and spacer,
+      taglist[s],   screen.count() > 1 and sepclose,
       promptbox[s],
       layout = awful.widget.layout.horizontal.leftright
     },
@@ -457,26 +457,26 @@ for s = 1, screen.count() do
     -- Keyboard layout
     on(1, kbdcfg.widget), on(1, spacer),
     -- Volume
-    on(1, volwidget), config.size == "Large" and on(1, volicon) or "", on(1, spacer),
+    on(1, volwidget), config.size == "Large" and on(1, volicon), on(1, spacer),
     -- Battery
     on(1, batwidget.widget),
-    on(1, batwidget.widget ~= "" and baticon or ""),
+    config.size == "Large" and on(1, batwidget.widget ~= "" and baticon or ""),
     on(1, batwidget.widget ~= "" and spacer or ""),
     -- File system storage
     on(1, fswidget), on(1, spacer),
 
     -- net graph and current state
-    screen.count() > 1 and on(2, netgraph.widget) or "",
-    screen.count() > 1 and on(2, netdownicon), on(2, netdown),
-    screen.count() > 1 and on(2, netupicon), on(2, netup), on(2, spacer),
+    screen.count() > 1 and on(2, netgraph.widget),
+    screen.count() > 1 and on(2, netdownicon) and on(2, netdown),
+    screen.count() > 1 and on(2, netupicon) and on(2, netup) and on(2, spacer),
     -- wifi
-    screen.count() > 1 and on(2, wifiwidget), on(2, wifiicon), on(2, sepopen),
+    screen.count() > 1 and on(2, wifiwidget) and on(2, wifiicon) and on(2, sepopen),
 
     -- memory graph and usage
-    config.size == "Large" and on(1, memgraph.widget) or "",
+    config.size == "Large" and on(1, memgraph.widget),
     on(1, memwidget), on(1, memicon), on(1, spacer),
     -- cpu graph and usage
-    config.size == "Large" and on(1, cpugraph.widget) or "",
+    config.size == "Large" and on(1, cpugraph.widget),
     on(1, cpuwidget), on(1, cpuicon), on(1, sepopen),
 
     -- cmus
