@@ -50,6 +50,9 @@ config = {}
 
 config.laptop = true --enable option like battery
 config.hostname = awful.util.pread('uname -n'):gsub('\n', '')
+--  Get Screen size
+-- use xdpyinfo | grep dimensions | awk '{print $2}' | awk -Fx '{print $1, $2}'
+-- config.screen.size = awful.util.pread("xdpyinfo | grep dimensions | awk '{print $2}' ") --e.g. 1024x600
 
 --config.terminal = "gnome-terminal"
 config.terminal = "urxvtcd --perl-lib " .. awful.util.getdir("config") .. "/lib/rxvt"
