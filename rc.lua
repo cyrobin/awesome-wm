@@ -60,11 +60,7 @@ config.termclass = "URxvt"
 config.editor = os.getenv("EDITOR") or "vim"
 config.editor_cmd = config.terminal .. " -e " .. config.editor
 
---config.browser = "iceweasel"
 config.browser = "firefox"
---config.mail = "thunderbird"
---config.mail = "geary"
---config.mail = config.terminal .. " -e mutt -R"
 config.mail = config.terminal .. " -e mutt -F ~/.mutt/muttrc_laas"
 config.files = "nautilus"
 
@@ -85,8 +81,6 @@ config.keyboards = { "fr bepo", "fr", "us" } -- also : "dvorak"
 --}}}
 
 -- Choose between available keybindings
---config.bindings = "qwerty"
---config.bindings = "bepo"
 --{{{ Decide according to hostname configuration
 -- default is qwerty
 if config.hostname == "alfred-laas" then
