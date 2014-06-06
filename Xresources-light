@@ -43,7 +43,6 @@ URxvt.background: rgba:FFFF/FFFF/FFFF/eeee
 URxvt.cursorColor: green
 URxvt.depth: 32
 URxvt.cursorBlink: True
-!!URxvt*colorIT: #ff7f00
 URxvt*colorIT: #00FFFF
 
 URxvt.scrollBar: True
@@ -68,9 +67,11 @@ URxvt.letterSpace: -1
 
 URxvt.iso14755: False
 
-!URxvt.perl-lib: ...
-URxvt.perl-ext-common: default,-option-popup,-selection-popup,font-size,matcher,clipboard
-URxvt.keysym.C-equal: perl:font-size:increase
-URxvt.keysym.C-minus: perl:font-size:decrease
-URxvt.keysym.C-S-c: perl:clipboard:copy
-URxvt.keysym.C-S-v: perl:clipboard:paste
+!URxvt.perl-lib:
+URxvt.perl-ext-common: url-select,clipboard,keyboard-select
+URxvt.url-select.underline: True
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
