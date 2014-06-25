@@ -94,7 +94,7 @@ shifty.config.tags = { --{{{
 -- Also, see rules.lua
 shifty.config.apps = {--{{{
    {
-      match = { role = { "browser" } },
+      match = { "Firefox","Chromium-browser","Opera","Uzbl" },
       tag = "www",
    },
    {
