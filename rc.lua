@@ -60,7 +60,9 @@ config.termclass = "URxvt"
 config.editor = os.getenv("EDITOR") or "vim"
 config.editor_cmd = config.terminal .. " -e " .. config.editor
 
-config.browser = "firefox"
+--config.browser = "firefox"
+config.browser = "uzbl-tabbed"
+--config.browser = "chromium-browser"
 config.mail = config.terminal .. " -e mutt -F ~/.mutt/muttrc_laas"
 config.files = "nautilus"
 
