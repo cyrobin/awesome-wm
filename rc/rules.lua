@@ -11,9 +11,36 @@ awful.rules.rules = {
         keys = config.keys.client,
         buttons = config.mouse.client }},
    --}}}
-   -- YouTube fullscreen mode in Firefox (1st) and Chromium (2nd)
-    { rule = { instance = "plugin-container" },
-      properties = {floating = true }},
-    { rule = { instance = "exe" },
-      properties = {floating = true }},
+   --{{{ Browser stuff
+   { rule = { role = "browser" },
+     callback = function(c)
+	 if not c.icon then
+	    local icon = icons.lookup({ name = "web-browser", type = "apps" })
+	    if icon then c.icon = image(icon) end
+	 end
+     end },
+   --}}}
+   --{{{ All windows should be slaves, except the browser windows.
+   { rule_any = { class = { "Iceweasel", "Firefox", "Chromium", "Conkeror", "Google-chrome", "Opera" } },
+     callback = function(c)
+	    if c.role ~= "browser" then awful.client.setslave(c) end
+     end },
+    --}}}
+   --{{{ Plugin
+   { rule = { instance = "plugin-container" },
+     properties = { floating = true, focus = yes } }, -- Flash with Firefox
+   { rule = { instance = "exe", class="Exe", instance="exe" },
+     properties = { floating = true, focus = yes } }, -- Flash with Chromium
+   --}}}
+
+   --{{{ Mail client stuff
+   { rule = { role = "mail" },
+     callback = function(c)
+	 if not c.icon then
+	    local icon = icons.lookup({ name = "mail-client", type = "apps" })
+	    if icon then c.icon = image(icon) end
+	 end
+     callback = awful.client.setslave
+     end },
+   --}}}
 }

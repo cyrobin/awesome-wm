@@ -5,7 +5,7 @@ config.mouse = {}
 local keydoc = loadrc("keydoc", "lib/keydoc")
 --load modules to control volume and brightness through special keys
 local volume = loadrc("volume", "lib/volume")
-local brightness = loadrc("brightness", "lib/brightness")
+--local brightness = loadrc("brightness", "lib/brightness")
 
 ---- FUNCTIONS
 local function screenshot(client) --{{{
@@ -114,8 +114,8 @@ config.keys.global = awful.util.table.join(
    awful.key({ modkey,           }, "q", awesome.quit,                                                  "Quit awesome"),
 
    -- Multimedia keys
-   awful.key({ }, "XF86MonBrightnessUp",   brightness.increase),
-   awful.key({ }, "XF86MonBrightnessDown", brightness.decrease),
+   --awful.key({ }, "XF86MonBrightnessUp",   brightness.increase),
+   --awful.key({ }, "XF86MonBrightnessDown", brightness.decrease),
    awful.key({ }, "XF86AudioRaiseVolume", volume.increase),
    awful.key({ }, "XF86AudioLowerVolume", volume.decrease),
    awful.key({ }, "XF86AudioMute",        volume.toggle),

@@ -31,7 +31,7 @@ shifty.config.tags = { --{{{
    },
    mail = {
       position = 3,
-      layout = awful.layout.suit.tile.left,
+      layout = awful.layout.suit.tile.top,
       mwfact = 0.7,
       exclusive = true,
       screen = math.max(screen.count(), 2),
