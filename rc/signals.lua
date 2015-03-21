@@ -79,7 +79,8 @@ client.add_signal("focus", function(c)--{{{
 
 client.add_signal("unfocus", function(c)--{{{
 		     c.border_color = beautiful.border_normal
-                     if not awful.rules.match_any(c, { instance = { "plugin-container" } }) then
-                        c.opacity = 0.85
-                     end
+		             -- semi-opaque when unfocused
+                     --if not awful.rules.match_any(c, { instance = { "plugin-container" } }) then
+                        --c.opacity = 0.85
+                     --end
 			     end)--}}}
