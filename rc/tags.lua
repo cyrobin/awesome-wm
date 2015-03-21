@@ -10,8 +10,8 @@ end--}}}
 shifty.config.tags = { --{{{
    xterm = {
       position = 1,
-      layout = awful.layout.suit.fair,
-      --layout = awful.layout.suit.tile,
+      --layout = awful.layout.suit.fair,
+      layout = awful.layout.suit.tile,
       mwfact = 0.6,
       exclusive = true,
       slave = true,
